@@ -24,6 +24,7 @@ module.exports = {
 		],
 		alias: {
 			"actions": `${__dirname}/src/actions`,
+			"pages": `${__dirname}/src/pages`,
 			"mock": `${__dirname}/src/mock`,
 			"assets": `${__dirname}/src/assets`,
 			"components": `${__dirname}/src/components`,
