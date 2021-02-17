@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
 	entry: {
 		"app": `${__dirname}/src/app.js`,
+		"members": `${__dirname}/src/@members/app.js`
 	},
 
 	output: {
@@ -23,23 +24,24 @@ module.exports = {
 			".json",
 		],
 		alias: {
-			"actions": `${__dirname}/src/actions`,
-			"pages": `${__dirname}/src/pages`,
-			"mock": `${__dirname}/src/mock`,
-			"assets": `${__dirname}/src/assets`,
-			"components": `${__dirname}/src/components`,
-			"compositions": `${__dirname}/src/compositions`,
-			"e2e": `${__dirname}/src/e2e`,
-			"containers": `${__dirname}/src/containers`,
-			"reducers": `${__dirname}/src/reducers`,
-			"selectors": `${__dirname}/src/selectors`,
-			"store": `${__dirname}/src/store`,
-			"modules": `${__dirname}/src/modules`,
-			"hooks": `${__dirname}/src/hooks`,
-			"styles": `${__dirname}/src/styles`,
-			"helpers": `${__dirname}/src/helpers`,
-			"validation": `${__dirname}/src/validation`,
-			"api": `${__dirname}/src/api`,
+			"actions": `${__dirname}/src/@members/actions`,
+			"@members": `${__dirname}/src/@members/`,
+			"pages": `${__dirname}/src/@members/pages`,
+			"mock": `${__dirname}/src/@members/mock`,
+			"assets": `${__dirname}/src/@members/assets`,
+			"components": `${__dirname}/src/@members/components`,
+			"compositions": `${__dirname}/src/@members/compositions`,
+			"e2e": `${__dirname}/src/@members/e2e`,
+			"containers": `${__dirname}/src/@members/containers`,
+			"reducers": `${__dirname}/src/@members/reducers`,
+			"selectors": `${__dirname}/src/@members/selectors`,
+			"store": `${__dirname}/src/@members/store`,
+			"modules": `${__dirname}/src/@members/modules`,
+			"hooks": `${__dirname}/src/@members/hooks`,
+			"styles": `${__dirname}/src/@members/styles`,
+			"helpers": `${__dirname}/src/@members/helpers`,
+			"validation": `${__dirname}/src/@members/validation`,
+			"api": `${__dirname}/src/@members/api`,
 		},
 		modules: [
 			`${__dirname}/node_modules`,
@@ -56,7 +58,7 @@ module.exports = {
 		new HtmlWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'members',
-			template: path.resolve(__dirname, './src/pages/Welcome/main.html'), // шаблон
+			template: path.resolve(__dirname, './src/@members/pages/Main/main.html'), // шаблон
 		}),
 		new CleanWebpackPlugin(),
 	],

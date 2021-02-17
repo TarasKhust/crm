@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { Route } from "react-router-dom";
 import { Portal } from "react-portal";
+import TopHeader from 'components/TopHeader'
+import MainBody from 'components/MainBody'
 
 const MainPage = lazy(() => import(/* webpackChunkName: "MainPage" */ "./containers/MainPage"));
 
@@ -17,8 +19,10 @@ const router = () => {
 	return (
 			<Portal node={container}>
 				<Suspense fallback={null}>
-					<Route exact path="/members/">
+					<Route exact path="/members">
+
 						<MainPage />
+						
 					</Route>
 				</Suspense>
 

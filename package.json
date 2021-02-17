@@ -22,7 +22,7 @@
     "start:server": "npm run setup && npm run build:server"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.5.0",
+    "@ant-design/icons": "4.5.0",
     "@apollo/client": "3.3.10",
     "@reduxjs/toolkit": "1.5.0",
     "antd": "4.12.3",
@@ -73,6 +73,9 @@
     "less-loader": "8.0.0",
     "postcss-loader": "5.0.0",
     "sass-loader": "11.0.1",
-    "eslint": "7.20.0"
+    "eslint": "7.20.0",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "babel-eslint": "10.1.0"
   }
 }

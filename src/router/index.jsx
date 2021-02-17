@@ -2,8 +2,8 @@ import React from "react";
 import { Router, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import Login from "pages/user/Login"
-import MainPage from 'pages/Welcome/index'
+import Login from "../pages/Login"
+import 'antd/dist/antd.css';
 
 export const history = createBrowserHistory();
 
@@ -19,7 +19,6 @@ export default () => (
 				<Router history={history}>
 					<Switch>
 						<Login/>
-						<MainPage/>
 					</Switch>
 				</Router>
 
