@@ -31,7 +31,7 @@ const Login = () => {
 			<div className="login_wrapper">
 			<Form
 					{...layout}
-					name="basic"
+					name="login_page"
 					initialValues={{
 						remember: true,
 					}}
