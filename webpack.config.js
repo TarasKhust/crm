@@ -53,10 +53,10 @@ module.exports = {
 			filename: "[name].css?[contenthash:6]",
 			chunkFilename: "[id].css?[contenthash:6]",
 		}),
+		new HtmlWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'webpack Boilerplate',
-			template: path.resolve(__dirname, './src/pages/user/Login/login.html'), // шаблон
-			filename: 'index.html', // название выходного файла
+			filename: 'members',
+			template: path.resolve(__dirname, './src/pages/Welcome/main.html'), // шаблон
 		}),
 		new CleanWebpackPlugin(),
 	],
