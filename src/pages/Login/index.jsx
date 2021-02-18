@@ -15,14 +15,14 @@ if (container) {
 
 const router = () => {
 	return (
-			<Portal node={container}>
-				<Suspense fallback={null}>
-					<Route exact path="/">
-						<Login />
-					</Route>
-				</Suspense>
+		<Portal node={container}>
+			<Suspense fallback={null}>
+				<Route exact path="/login">
+					<Login />
+				</Route>
+			</Suspense>
 
-			</Portal>
+		</Portal>
 	);
 };
 

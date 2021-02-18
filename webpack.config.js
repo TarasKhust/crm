@@ -1,18 +1,17 @@
 const path = require("path");
 const babel = require("./babel.config");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
 	entry: {
 		"app": `${__dirname}/src/app.js`,
-		"members": `${__dirname}/src/@members/app.js`
+		"member": `${__dirname}/src/@member/app.js`,
 	},
 
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, "dist"),
 		filename: "[name].bundle.js",
 		chunkFilename: "[name].bundle.js?[contenthash]",
 	},
@@ -24,24 +23,24 @@ module.exports = {
 			".json",
 		],
 		alias: {
-			"actions": `${__dirname}/src/@members/actions`,
-			"@members": `${__dirname}/src/@members/`,
-			"pages": `${__dirname}/src/@members/pages`,
-			"mock": `${__dirname}/src/@members/mock`,
-			"assets": `${__dirname}/src/@members/assets`,
-			"components": `${__dirname}/src/@members/components`,
-			"compositions": `${__dirname}/src/@members/compositions`,
-			"e2e": `${__dirname}/src/@members/e2e`,
-			"containers": `${__dirname}/src/@members/containers`,
-			"reducers": `${__dirname}/src/@members/reducers`,
-			"selectors": `${__dirname}/src/@members/selectors`,
-			"store": `${__dirname}/src/@members/store`,
-			"modules": `${__dirname}/src/@members/modules`,
-			"hooks": `${__dirname}/src/@members/hooks`,
-			"styles": `${__dirname}/src/@members/styles`,
-			"helpers": `${__dirname}/src/@members/helpers`,
-			"validation": `${__dirname}/src/@members/validation`,
-			"api": `${__dirname}/src/@members/api`,
+			"actions": `${__dirname}/src/@member/actions`,
+			"@member": `${__dirname}/src/@member/`,
+			"pages": `${__dirname}/src/@member/pages`,
+			"mock": `${__dirname}/src/@member/mock`,
+			"assets": `${__dirname}/src/@member/assets`,
+			"components": `${__dirname}/src/@member/components`,
+			"compositions": `${__dirname}/src/@member/compositions`,
+			"e2e": `${__dirname}/src/@member/e2e`,
+			"containers": `${__dirname}/src/@member/containers`,
+			"reducers": `${__dirname}/src/@member/reducers`,
+			"selectors": `${__dirname}/src/@member/selectors`,
+			"store": `${__dirname}/src/@member/store`,
+			"modules": `${__dirname}/src/@member/modules`,
+			"hooks": `${__dirname}/src/@member/hooks`,
+			"styles": `${__dirname}/src/@member/styles`,
+			"helpers": `${__dirname}/src/@member/helpers`,
+			"validation": `${__dirname}/src/@member/validation`,
+			"api": `${__dirname}/src/@member/api`,
 		},
 		modules: [
 			`${__dirname}/node_modules`,
@@ -57,8 +56,8 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			filename: 'members',
-			template: path.resolve(__dirname, './src/@members/pages/Main/main.html'), // шаблон
+			filename: "members",
+			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"), // шаблон
 		}),
 		new CleanWebpackPlugin(),
 	],
@@ -82,11 +81,11 @@ module.exports = {
 			},
 			{
 				test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-				type: 'asset/inline',
+				type: "asset/inline",
 			},
 			{
 				test: /\.(scss|css)$/,
-				use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+				use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
 			},
 		],
 	},

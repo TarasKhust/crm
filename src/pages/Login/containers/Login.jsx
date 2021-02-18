@@ -1,6 +1,6 @@
-import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd';
-import '../style.scss'
+import React from "react";
+import { Form, Input, Button, Checkbox } from "antd";
+import "../style.scss";
 
 const layout = {
 	labelCol: {
@@ -10,6 +10,7 @@ const layout = {
 		span: 16,
 	},
 };
+
 const tailLayout = {
 	wrapperCol: {
 		offset: 8,
@@ -19,52 +20,48 @@ const tailLayout = {
 
 const Login = () => {
 	const onFinish = (values) => {
-		console.log('Success:', values);
+		console.log("Success:", values);
 	};
 
 	const onFinishFailed = (errorInfo) => {
-		console.log('Failed:', errorInfo);
+		console.log("Failed:", errorInfo);
 	};
 
 	return (
-			<div className="login_wrapper">
+		<div className="login_wrapper">
 			<Form
-					{...layout}
-					name="login_page"
-					initialValues={{
+				{...layout}
+				name="login_page"
+				initialValues={{
 						remember: true,
-					}}
-					onFinish={onFinish}
-					onFinishFailed={onFinishFailed}
+				}}
+				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
 			>
 				<Form.Item
-						label="Username"
-						name="username"
-						rules={[
+					label="Username"
+					name="username"
+					rules={[
 							{
 								required: true,
-								message: 'Please input your username!',
+								message: "Please input your username!",
 							},
-						]}
+					]}
 				>
 					<Input />
 				</Form.Item>
 
 				<Form.Item
-						label="Password"
-						name="password"
-						rules={[
+					label="Password"
+					name="password"
+					rules={[
 							{
 								required: true,
-								message: 'Please input your password!',
+								message: "Please input your password!",
 							},
-						]}
+					]}
 				>
 					<Input.Password />
-				</Form.Item>
-
-				<Form.Item {...tailLayout} name="remember" valuePropName="checked">
-					<Checkbox>Remember me</Checkbox>
 				</Form.Item>
 
 				<Form.Item {...tailLayout}>
@@ -73,8 +70,8 @@ const Login = () => {
 					</Button>
 				</Form.Item>
 			</Form>
-			</div>
+		</div>
 	);
-}
+};
 
-export default Login
+export default Login;
