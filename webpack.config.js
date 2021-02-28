@@ -40,7 +40,8 @@ module.exports = {
 			"styles": `${__dirname}/src/@member/styles`,
 			"helpers": `${__dirname}/src/@member/helpers`,
 			"validation": `${__dirname}/src/@member/validation`,
-			"api": `${__dirname}/src/@member/api`,
+			"api": `${__dirname}/src/api`,
+			"Request": `${__dirname}/src/Request`,
 		},
 		modules: [
 			`${__dirname}/node_modules`,

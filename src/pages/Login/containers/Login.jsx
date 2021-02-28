@@ -1,6 +1,8 @@
-import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import "../style.scss";
+import React, { Fragment } from "react";
+import { Form, Input, Button, Alert } from "antd";
+import "../loginStyle.scss";
+import { useLogin } from "api/login.api";
+import Notification from "components/Notifications";
 
 const layout = {
 	labelCol: {
@@ -19,8 +21,16 @@ const tailLayout = {
 };
 
 const Login = () => {
+	const { login, data, error, loading } = useLogin();
+
 	const onFinish = (values) => {
-		console.log("Success:", values);
+	 const { email, password } = values;
+
+	  login({ variables: { email, password } }).then(({ data: { login } }) => {
+	    if (login.status) {
+	      location.href = "/member";
+	    }
+	  });
 	};
 
 	const onFinishFailed = (errorInfo) => {
@@ -28,49 +38,54 @@ const Login = () => {
 	};
 
 	return (
-		<div className="login_wrapper">
-			<Form
-				{...layout}
-				name="login_page"
-				initialValues={{
+		<Fragment>
+			{error && <Notification message={error?.message} /> }
+
+			<div className="login_wrapper">
+
+				<Form
+					{...layout}
+					name="login_page"
+					initialValues={{
 						remember: true,
-				}}
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-			>
-				<Form.Item
-					label="Username"
-					name="username"
-					rules={[
+					}}
+					onFinish={onFinish}
+					onFinishFailed={onFinishFailed}
+				>
+					<Form.Item
+						label="email"
+						name="email"
+						rules={[
 							{
 								required: true,
 								message: "Please input your username!",
 							},
-					]}
-				>
-					<Input />
-				</Form.Item>
+						]}
+					>
+						<Input />
+					</Form.Item>
 
-				<Form.Item
-					label="Password"
-					name="password"
-					rules={[
+					<Form.Item
+						label="Password"
+						name="password"
+						rules={[
 							{
 								required: true,
 								message: "Please input your password!",
 							},
-					]}
-				>
-					<Input.Password />
-				</Form.Item>
+						]}
+					>
+						<Input.Password />
+					</Form.Item>
 
-				<Form.Item {...tailLayout}>
-					<Button type="primary" htmlType="submit">
-						Submit
-					</Button>
-				</Form.Item>
-			</Form>
-		</div>
+					<Form.Item {...tailLayout}>
+						<Button type="primary" htmlType="submit">
+							Submit
+						</Button>
+					</Form.Item>
+				</Form>
+			</div>
+		</Fragment>
 	);
 };
 
