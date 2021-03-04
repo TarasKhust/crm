@@ -79,6 +79,7 @@ export default [
 	  {
 		"path": "member/sales/orders",
 		"name": "orders",
+	    "icon": <TeamOutlined />,
 		"exact": true,
 	  },
 	  {

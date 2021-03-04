@@ -23,9 +23,9 @@ export const TopNavigation = () => {
 					  if (children?.length > 0) {
 						return (
 							<SubMenu key={`sub${index}`} icon={icon} title={name}>
-								{children.map(({ name, path }, index) => {
+								{children.map(({ name, path, icon }, index) => {
 								return (
-									<Menu.Item key={`menu${index}`}>
+									<Menu.Item key={`menu${index}`} icon={icon}>
 										<Link key={uuid()} to={path}>
 											{name}
 										</Link>
