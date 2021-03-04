@@ -1,26 +1,35 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
-import Catalog from "../pages/Catalog";
+import routes from "@member/config/routes";
 
-const router = () => {
-  return (
+const Catalog = lazy(() => import(/* webpackChunkName: "Catalog" */ "@member/pages/Catalog/CatalogOfProducts"));
 
-	<Switch>
+export default () => {
+	return (
+		<Suspense fallback={null}>
 
-		<Route exact path="/member">
+			<Suspense fallback={null}>
+				<Switch>
 
-			<div>sadasdas</div>
+					<Route exact path={routes.members.catalog._}>
+						<Catalog />
+					</Route>
 
-		</Route>
-		<Catalog />
-		<Route exact path="/member/:id">
+					<Route exact path={routes.members.catalog.products._}>
+						<div><h1>PRODUCTS</h1></div>
+					</Route>
 
-			<div>sadasdas</div>
+					<Route exact path={routes.members.catalog.categories._}>
+						<div><h1>CATEGORY</h1></div>
+					</Route>
 
-		</Route>
-	</Switch>
+					<Route exact path={routes.members.catalog.brands._}>
+						<div><h1>BRANDS</h1></div>
+					</Route>
 
-  );
+				</Switch>
+			</Suspense>
+
+		</Suspense>
+	);
 };
-
-export default router;

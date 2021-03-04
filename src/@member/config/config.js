@@ -1,8 +1,9 @@
 import React from "react";
 import {
   PieChartOutlined,
-  DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined,
+  DesktopOutlined, UserOutlined, TeamOutlined,
 } from "@ant-design/icons";
+import routes from "@member/config/routes";
 
 export default [
   {
@@ -28,22 +29,22 @@ export default [
 	],
   },
   {
-	"path": "member/catalog",
+	"path": routes.members.catalog._,
 	"name": "catalog",
 	"icon": <DesktopOutlined />,
 	"children": [
 	  {
-		"path": "member/catalog/products",
+		"path": routes.members.catalog.products._,
 		"name": "products",
 		"exact": true,
 	  },
 	  {
-		"path": "member/catalog/categories",
+		"path": routes.members.catalog.categories._,
 		"name": "categories",
 		"exact": true,
 	  },
 	  {
-		"path": "member/catalog/brands",
+		"path": routes.members.catalog.brands._,
 		"name": "brands",
 		"exact": true,
 	  },
@@ -95,7 +96,7 @@ export default [
 	],
   },
   {
-	"path": "member",
+	"path": "member/1",
 	"name": "ola",
 	"icon": <TeamOutlined />,
     "children": [],

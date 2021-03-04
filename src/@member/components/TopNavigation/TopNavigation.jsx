@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import menuData from "./config";
+import menuData from "../../config/config";
 import { Link } from "react-router-dom";
 import uuid from "react-uuid";
 

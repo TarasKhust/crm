@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route } from "react-router-dom";
 import { Portal } from "react-portal";
+import routes from "@member/config/routes";
 
 const MainPage = lazy(() => import(/* webpackChunkName: "MainPage" */ "./containers/MainPage"));
 
@@ -13,14 +14,12 @@ if (container) {
 	}
 }
 
-const router = () => {
+const MainRouter = () => {
 	return (
 		<Portal node={container}>
 			<Suspense fallback={null}>
-				<Route exact path="/member">
-
+				<Route path={routes.members._}>
 					<MainPage />
-
 				</Route>
 			</Suspense>
 
@@ -28,4 +27,4 @@ const router = () => {
 	);
 };
 
-export default router;
+export default MainRouter;
