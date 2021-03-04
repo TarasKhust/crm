@@ -94,25 +94,9 @@ export default [
 	],
   },
   {
-	"path": "member/buyers",
-	"name": "buyers",
-	"icon": <FileOutlined />,
-	"children": [
-	  {
-		"path": "member/buyers/customer",
-		"name": "customer",
-		"exact": true,
-	  },
-	  {
-		"path": "member/buyers/monitor",
-		"name": "monitor",
-		"exact": true,
-	  },
-	  {
-		"path": "member/buyers/workplace",
-		"name": "workplace",
-		"exact": true,
-	  },
-	],
+	"path": "member",
+	"name": "ola",
+	"icon": <TeamOutlined />,
+    "children": [],
   },
 ];
