@@ -60,6 +60,10 @@ module.exports = {
 			filename: "members",
 			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"), // шаблон
 		}),
+	    new HtmlWebpackPlugin({
+		  filename: "catalog",
+		  template: path.resolve(__dirname, "./src/@member/pages/catalog/catalog.html"), // шаблон
+	    }),
 		new CleanWebpackPlugin(),
 	],
 

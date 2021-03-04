@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "antd/es/layout/layout";
 import AvatarHeader from "components/AvatarHeader";
-import Sider from "antd/es/layout/Sider";
 
 const TopHeader = () => {
 	return (

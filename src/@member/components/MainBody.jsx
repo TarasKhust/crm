@@ -1,22 +1,26 @@
 import React from "react";
-import { Content } from "antd/es/layout/layout";
-import { Breadcrumb } from "antd";
+import { Route, Switch } from "react-router-dom";
+import Catalog from "../pages/Catalog";
 
-const MainBody = () => {
-	return (
-		<div>
-			<Content style={{ margin: "0 16px" }}>
-				<Breadcrumb style={{ margin: "16px 0" }}>
-					<Breadcrumb.Item>User</Breadcrumb.Item>
-					<Breadcrumb.Item>Bill</Breadcrumb.Item>
-				</Breadcrumb>
-				<div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-					Bill is a cat.
-				</div>
-			</Content>
+const router = () => {
+  return (
 
-		</div>
-	);
+	<Switch>
+
+		<Route exact path="/member">
+
+			<div>sadasdas</div>
+
+		</Route>
+		<Catalog />
+		<Route exact path="/member/:id">
+
+			<div>sadasdas</div>
+
+		</Route>
+	</Switch>
+
+  );
 };
 
-export default MainBody;
+export default router;

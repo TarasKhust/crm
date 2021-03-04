@@ -1,5 +1,5 @@
 import React from "react";
-import TopNavigation from "components/TopNavigation";
+import TopNavigation from "components/TopNavigation/TopNavigation";
 import TopHeader from "components/TopHeader";
 import MainBody from "components/MainBody";
 import Footer from "components/Footer";
