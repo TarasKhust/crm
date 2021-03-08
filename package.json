@@ -30,9 +30,9 @@
       "^@members(.*)$": "<rootDir>/src/@members$1",
       "^components(.*)$": "<rootDir>/src/components$1",
       "^api(.*)$": "<rootDir>/src/api$1",
-      "^actions(.*)$": "<rootDir>/src/actions$1",
-      "^reducers(.*)$": "<rootDir>/src/reducers$1",
-      "^selectors(.*)$": "<rootDir>/src/selectors$1",
+      "^actions(.*)$": "<rootDir>/src/@member/actions$1",
+      "^reducers(.*)$": "<rootDir>/src/@member/reducers$1",
+      "^selectors(.*)$": "<rootDir>/src/@member/selectors$1",
       "^classes(.*)$": "<rootDir>/src/classes$1",
       "^helpers(.*)$": "<rootDir>/src/helpers$1",
       "^hooks(.*)$": "<rootDir>/src/hooks$1",
@@ -120,6 +120,7 @@
     "webpack": "5.21.2",
     "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2",
-    "webpack-merge": "5.7.3"
+    "webpack-merge": "5.7.3",
+    "jest-cli": "26.6.3"
   }
 }

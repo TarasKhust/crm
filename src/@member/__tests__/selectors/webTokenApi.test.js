@@ -8,7 +8,7 @@ describe("selectors", () => {
 		expect(
 			selectors.getState(getDefaultState())
 		).toBe(
-			getDefaultState().get("isLoaded")
+			getDefaultState().get()
 		);
 	});
 
