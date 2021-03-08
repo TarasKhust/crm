@@ -10,95 +10,10 @@ describe("withProductConnectedDomains.actions", () => {
 		const isLoaded = true;
 
 		expect(
-			actions.setUser(isLoaded)
+			actions.setUser({ user: "taras", id: "1231321", token: "dsadasdasdsa" })
 		).toStrictEqual({
 			type: actions.SET_USER,
-			isLoaded,
-		});
 
-		expect(
-			actions.setIsComplete("")
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADED,
-			isLoaded: false,
-		});
-
-		expect(
-			actions.setIsComplete()
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADED,
-			isLoaded: false,
-		});
-	});
-
-	test("SET_CONNECTED_DOMAINS_ERROR", () => {
-		const error = "some error text";
-
-		expect(
-			actions.setConnectedDomainsError(error)
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_ERROR,
-			error,
-			isError: true,
-		});
-
-		expect(
-			actions.setConnectedDomainsError([])
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_ERROR,
-			error: "",
-			isError: false,
-		});
-
-		expect(
-			actions.setConnectedDomainsError()
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_ERROR,
-			error: "",
-			isError: false,
-		});
-	});
-
-	test("SET_CONNECTED_DOMAINS_LOADING", () => {
-		const isLoading = true;
-
-		expect(
-			actions.setConnectedDomainsIsLoading(isLoading)
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADING,
-			isLoading,
-		});
-
-		expect(
-			actions.setConnectedDomainsIsLoading("")
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADING,
-			isLoading: false,
-		});
-
-		expect(
-			actions.setConnectedDomainsIsLoading()
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADING,
-			isLoading: false,
-		});
-	});
-
-	test("SET_CONNECTED_DOMAINS_LOADING", () => {
-		const data = responseConnectedDomains.data;
-
-		expect(
-			actions.setConnectedDomains(data)
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS,
-			connectedProducts: data.connected_products,
-		});
-
-		expect(
-			actions.setConnectedDomains({ connected_products: [] })
-		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS,
-			connectedProducts: [],
 		});
 	});
 });
