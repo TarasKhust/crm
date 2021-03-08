@@ -7,16 +7,16 @@ describe("selectors", () => {
 	test("getState", () => {
 		expect(
 			selectors.getState(getDefaultState())
-		).toBe(
-			getDefaultState().get()
+		).toStrictEqual(
+			getDefaultState().toJS()
 		);
 	});
 
-	test("getIsLoading", () => {
+	test("getUserEmail", () => {
 		expect(
 			selectors.getUserEmail(getDefaultState())
-		).toBe(
-			getDefaultState().get("isLoading")
+		).toStrictEqual(
+			getDefaultState().toJS().user.email
 		);
 	});
 
