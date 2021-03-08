@@ -12,7 +12,8 @@ export const LOGIN_MUTATION = gql`
             token,
             status,
             id,
-            email
+            email,
+	        redirect
         }
     }
 `;

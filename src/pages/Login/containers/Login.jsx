@@ -33,12 +33,12 @@ const Login = () => {
 	const onFinish = (values) => {
 	 const { email, password } = values;
 
-	  login({ variables: { email, password } }).then(({ data: { login: { status, token, id, email } } }) => {
+	  login({ variables: { email, password } }).then(({ data: { login: { status, token, id, email, redirect } } }) => {
 	    if (status) {
 	      setToken(token);
 	      actions.setUser({ token, id, email });
 
-	      location.href = "/member";
+	      location.href = redirect;
 	    }
 	  });
 	};
