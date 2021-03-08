@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route } from "react-router-dom";
 import { Portal } from "react-portal";
+import { WebTokenApiProvider } from "store/WebTokenApi";
 
 const Login = lazy(() => import(/* webpackChunkName: "Login" */ "./containers/Login"));
 
@@ -17,9 +18,11 @@ const router = () => {
 	return (
 		<Portal node={container}>
 			<Suspense fallback={null}>
-				<Route exact path="/login">
-					<Login />
-				</Route>
+				<WebTokenApiProvider>
+					<Route exact path="/login">
+						<Login />
+					</Route>
+				</WebTokenApiProvider>
 			</Suspense>
 
 		</Portal>
