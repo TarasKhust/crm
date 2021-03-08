@@ -6,21 +6,13 @@ import "@members/__mocks__/product/config";
 const mockStore = configureMockStore([thunk]);
 
 describe("withProductConnectedDomains.actions", () => {
-	test("TO_DEFAULT", () => {
-		expect(
-			actions.toDefault()
-		).toStrictEqual({
-			type: actions.TO_DEFAULT,
-		});
-	});
-
 	test("SET_CONNECTED_DOMAINS_LOADED", () => {
 		const isLoaded = true;
 
 		expect(
-			actions.setIsComplete(isLoaded)
+			actions.setUser(isLoaded)
 		).toStrictEqual({
-			type: actions.SET_CONNECTED_DOMAINS_LOADED,
+			type: actions.SET_USER,
 			isLoaded,
 		});
 
@@ -108,26 +100,5 @@ describe("withProductConnectedDomains.actions", () => {
 			type: actions.SET_CONNECTED_DOMAINS,
 			connectedProducts: [],
 		});
-	});
-});
-
-describe("withProductConnectedDomains.actions API", () => {
-	test("getConnectedDomains", () => {
-		const store = mockStore();
-		const data = responseConnectedDomains.data;
-
-		expect.assertions(1);
-
-		return expect(
-			store
-			.dispatch(
-				actions.getConnectedDomains("12812771")
-			)
-			.then(() => store.getActions())
-		).resolves.toEqual([
-			actions.setConnectedDomainsIsLoading(true),
-			actions.setConnectedDomains(data),
-			actions.setConnectedDomainsIsLoading(false),
-		]);
 	});
 });
