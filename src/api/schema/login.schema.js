@@ -16,17 +16,3 @@ export const LOGIN_MUTATION = gql`
         }
     }
 `;
-
-export const CREATE_USER = gql`
-    mutation CreateMutation(
-        $email: String!
-        $password: String!
-    ) {
-        createUser(
-            email: $email
-            password: $password
-        ) {
-            email
-        }
-    }
-`;

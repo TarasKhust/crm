@@ -5,8 +5,6 @@ import { useLogin } from "api/login.api";
 import Notification from "components/Notifications";
 import useLocalStorage from "hooks/useLocalStorage";
 import { WebTokenApiContext } from "store/WebTokenApi";
-import GQL from "Request/GQL";
-import { CREATE_USER, LOGIN_MUTATION } from "api/schema/login.schema";
 
 const layout = {
 	labelCol: {
@@ -25,15 +23,12 @@ const tailLayout = {
 };
 
 const Login = () => {
-	const { login, data, error, loading } = useLogin();
-    const [token, setToken] = useLocalStorage("token", "");
-    const [createUser, { data: datas }] = GQL.useMutation(CREATE_USER);
+	const { login, error } = useLogin();
+    const [, setToken] = useLocalStorage("token", "");
 
     const {
-	  actions, selectors,
+	  actions,
     } = useContext(WebTokenApiContext);
-
-  console.log(selectors.getState());
 
 	const onFinish = (values) => {
 	 const { email, password } = values;
@@ -43,17 +38,8 @@ const Login = () => {
 	      setToken(token);
 	      actions.setUser({ token, id, email });
 
-	      // location.href = "/member";
+	      location.href = "/member";
 	    }
-	  });
-	};
-
-	const create = () => {
-	  createUser({ variables: { email: "taraskhust@gmail.com", password: "12312312" } }).then(() => {
-
-	  })
-.catch(({ message }) => {
-	    console.log(message);
 	  });
 	};
 
@@ -64,8 +50,6 @@ const Login = () => {
 	return (
 		<Fragment>
 			{error && <Notification message={error?.message} /> }
-
-			<Button onClick={create}>Click</Button>
 
 			<div className="login_wrapper">
 

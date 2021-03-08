@@ -1,15 +1,17 @@
 import React from "react";
 import { Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, HttpLink, InMemoryCache } from "@apollo/client";
 import Login from "../pages/Login";
 import "antd/dist/antd.css";
 import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 
 export const history = createBrowserHistory();
 
-const httpLink = createHttpLink({
+const httpLink = new HttpLink({
   uri: "http://localhost:3000/graphql",
+  credentials: "same-origin",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -29,8 +31,24 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+	graphQLErrors.map(({ message, locations, path }) => {
+	  if (message === "Unauthorized") {
+	    return location.href = "/login";
+	  }
+		}
+	);
+  }
+
+  if (networkError) {
+	console.log(`[Network error]: ${networkError}`);
+  }
+});
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  connectToDevTools: true,
+  link: ApolloLink.from([authLink, errorLink, httpLink]),
   cache: new InMemoryCache(),
 });
 
