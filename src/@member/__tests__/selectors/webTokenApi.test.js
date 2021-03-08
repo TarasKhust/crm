@@ -1,12 +1,12 @@
 import * as selectors from "selectors/webTokenApi.selectors";
 import { initState } from "reducers/webTokenApi.reducer";
 
-describe("withProductAddons.selectors", () => {
+describe("selectors", () => {
 	const getDefaultState = () => initState;
 
-	test("getIsComplete", () => {
+	test("getState", () => {
 		expect(
-			selectors.getIsLoaded(getDefaultState())
+			selectors.getState(getDefaultState())
 		).toBe(
 			getDefaultState().get("isLoaded")
 		);
@@ -14,7 +14,7 @@ describe("withProductAddons.selectors", () => {
 
 	test("getIsLoading", () => {
 		expect(
-			selectors.getIsLoading(getDefaultState())
+			selectors.getUserEmail(getDefaultState())
 		).toBe(
 			getDefaultState().get("isLoading")
 		);
@@ -22,7 +22,7 @@ describe("withProductAddons.selectors", () => {
 
 	test("getErrorText", () => {
 		expect(
-			selectors.getError(getDefaultState())
+			selectors.getUserId(getDefaultState())
 		).toBe(
 			getDefaultState().get("error")
 		);
@@ -30,7 +30,7 @@ describe("withProductAddons.selectors", () => {
 
 	test("hasRequestError", () => {
 		expect(
-			selectors.getIsError(getDefaultState())
+			selectors.getUserInfo(getDefaultState())
 		).toBe(
 			getDefaultState().get("isError")
 		);
@@ -38,7 +38,7 @@ describe("withProductAddons.selectors", () => {
 
 	test("getValues", () => {
 		expect(
-			selectors.getItemsConnected(getDefaultState())
+			selectors.getUserToken(getDefaultState())
 		).toStrictEqual(
 			getDefaultState().get("connectedProducts")
 		);
