@@ -60,7 +60,10 @@ const ProductDetailsForm = () => {
 			</Form.Item>
 
 			<Button type="primary" htmlType="submit">
-				Submit
+				Сохранить
+			</Button>
+			<Button type="secondary">
+				Отменить
 			</Button>
 
 		</Form>
