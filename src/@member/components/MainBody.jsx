@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import routes from "@member/config/routes";
+import Product from "pages/Product/containers/Product";
 
 const Catalog = lazy(() => import(/* webpackChunkName: "Catalog" */ "@member/pages/Catalog/CatalogOfProducts"));
 
@@ -16,7 +17,7 @@ export default () => {
 					</Route>
 
 					<Route exact path={routes.members.catalog.products._}>
-						<div><h1>PRODUCTS</h1></div>
+						<Product />
 					</Route>
 
 					<Route exact path={routes.members.catalog.categories._}>

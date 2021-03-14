@@ -62,8 +62,12 @@ module.exports = {
 		}),
 	    new HtmlWebpackPlugin({
 		  filename: "catalog",
-		  template: path.resolve(__dirname, "./src/@member/pages/catalog/catalog.html"), // шаблон
+		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"), // шаблон
 	    }),
+	  new HtmlWebpackPlugin({
+		filename: "product",
+		template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"), // шаблон
+	  }),
 		new CleanWebpackPlugin(),
 	],
 
