@@ -2,12 +2,14 @@ import React, { Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import routes from "@member/config/routes";
 import Product from "pages/Product/containers/Product";
+import { Content } from "antd/es/layout/layout";
 
 const Catalog = lazy(() => import(/* webpackChunkName: "Catalog" */ "@member/pages/Catalog/CatalogOfProducts"));
 
 export default () => {
 	return (
-		<Suspense fallback={null}>
+
+		<Content>
 
 			<Suspense fallback={null}>
 				<Switch>
@@ -30,7 +32,7 @@ export default () => {
 
 				</Switch>
 			</Suspense>
+		</Content>
 
-		</Suspense>
 	);
 };
