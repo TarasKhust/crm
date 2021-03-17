@@ -1,9 +1,8 @@
 import React from "react";
-import {
-  Form,
-  Input,
-} from "antd";
 import ProductDetailsImages from "pages/Product/components/ProductDetailsImages";
+import { Item } from "components/FormElements/Form";
+import Input from "components/FormElements/Input";
+import TextArea from "components/FormElements/TextArea";
 
 const ProductDetailsForm = () => {
   const validations = [
@@ -16,26 +15,21 @@ const ProductDetailsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Form.Item label="Наименование:" name="productName" rules={validations}>
-			<Input name="productName" />
-		</Form.Item>
-		<Form.Item label="Описание:" name="productDescriptions">
-			<Input.TextArea />
-		</Form.Item>
-		<Form.Item label="Мета-тег Description:" name="productMetaDescription">
-			<Input.TextArea />
-		</Form.Item>
-		<Form.Item label="Мета-тег Keywords:" name="productMetaKeywords">
-			<Input />
-		</Form.Item>
-		<Form.Item label="Теги товара:" name="productTags">
-			<Input />
-		</Form.Item>
-		<Form.Item label="Фото:" name="productImages">
+		<Input name="productName" label="Наименование:" rules={validations} />
+
+		<TextArea label="Описание:" name="productDescriptions" />
+
+		<TextArea label="Мета-тег Description:" name="productMetaDescription" />
+
+		<Input label="Мета-тег Keywords:" name="productMetaKeywords" />
+
+		<Input label="Теги товара:" name="productTags" />
+
+		<Item label="Фото:" name="productImages">
 
 			<ProductDetailsImages />
 
-		</Form.Item>
+		</Item>
 
 	  </React.Fragment>
   );

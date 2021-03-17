@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
-import { Button, Form, Layout, Space, Tabs } from "antd";
+import { Button, Tabs } from "antd";
+import Form from "components/FormElements/Form";
 import ProductDetailsForm from "pages/Product/components/ProductDetailsForm";
 import ProductDetailsDataInfoForm from "pages/Product/components/ProductDetailsDataInfoForm";
 import ProductDetailsAttributesForm from "pages/Product/components/ProductDetailsAttributesForm";
-import { Content } from "antd/es/layout/layout";
+import ProductDetailsConnectionsForm from "pages/Product/components/ProductDetailsConnectionsForm";
 
 const Product = () => {
   const { TabPane } = Tabs;
@@ -12,30 +13,11 @@ const Product = () => {
 	console.log(key);
   };
 
-  const onFinish = (response) => {
-	console.log(response);
-  };
-
-  const onFinishFailed = (response) => {
-	console.log(response);
-  };
-
   return (
 	<Fragment>
 
-		<Form
-			id="create_product"
-			labelCol={{
-			span: 4,
-			}}
-			wrapperCol={{
-			span: 14,
-			}}
-			layout="horizontal"
-			size="default"
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
-		>
+		<Form name="create_product">
+
 			<Tabs onChange={callback} type="card" >
 				<TabPane tab="Главная" key="1">
 					<ProductDetailsForm />
@@ -44,7 +26,7 @@ const Product = () => {
 					<ProductDetailsDataInfoForm />
 				</TabPane>
 				<TabPane tab="Связи" key="3">
-					Connections
+					<ProductDetailsConnectionsForm />
 				</TabPane>
 				<TabPane tab="Атрибуты" key="4">
 					<ProductDetailsAttributesForm />
@@ -57,7 +39,6 @@ const Product = () => {
 			<Button type="secondary">
 				Отменить
 			</Button>
-
 		</Form>
 
 	</Fragment>

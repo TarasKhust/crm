@@ -1,10 +1,11 @@
 import React from "react";
 import {
-  Form,
-  Input, Switch,
+  Switch,
 } from "antd";
-import Select from "components/Select";
+import Select from "components/FormElements/Select";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { Item } from "components/FormElements/Form";
+import Input from "components/FormElements/Input";
 
 const ProductDetailsForm = () => {
   const productState = [
@@ -22,31 +23,25 @@ const ProductDetailsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Form.Item label="Артикул:" name="vendorCode">
-			<Input name="vendorCode" />
-		</Form.Item>
-		<Form.Item label="Цена:" name="productPrice" rules={validations}>
-			<Input name="productPrice" />
-		</Form.Item>
-		<Form.Item label="Количество:" name="productCount">
-			<Input name="productCount" />
-		</Form.Item>
-		<Form.Item label="Минимальное количество:" name="productMinimalCount">
-			<Input name="productMinimalCount" defaultValue={1} />
-		</Form.Item>
-		<Form.Item label="Отсутствие на складе:" name="productStatusName">
-			<Select options={productState} name="productStatusName" />
-		</Form.Item>
-		<Form.Item label="SEO URL:" name="productSeoUrl">
-			<Input name="productSeoUrl" />
-		</Form.Item>
-		<Form.Item label="Отображать на сайте:" name="productStatus">
+		<Input label="Артикул:" name="vendorCode" />
+
+		<Input name="productPrice" label="Цена:" rules={validations} />
+
+		<Input name="productCount" label="Количество:" />
+
+		<Input name="productMinimalCount" label="Минимальное количество:" defaultValue={1} />
+
+		<Select options={productState} label="Отсутствует на складе:" name="productStatusExist" />
+
+		<Input name="productSeoUrl" label="SEO URL:" />
+
+		<Item label="Отображать на сайте:" name="productStatus">
 			<Switch
 				checkedChildren={<CheckOutlined />}
 				unCheckedChildren={<CloseOutlined />}
 				defaultChecked
 			/>
-		</Form.Item>
+		</Item>
 
 	  </React.Fragment>
   );
