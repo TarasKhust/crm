@@ -1,42 +1,44 @@
 import React from "react";
-import { Form, Input, Button, Space } from "antd";
+import { Button, Space } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Item, List } from "components/FormElements/Form";
+import Input from "components/FormElements/Input";
 
 const ProductDetailsAttributesForm = () => {
   return (
 	  <React.Fragment>
-		<Form.List name="attributes">
+		<List name="attributes">
 			{(fields, { add, remove }) => (
 				<React.Fragment>
 					{fields.map(field => (
 						<Space key={field.key} style={{ display: "flex", marginBottom: 8 }} align="baseline">
-							<Form.Item
+							<Item
 								{...field}
 								name={[field.name, "attributes"]}
 								fieldKey={[field.fieldKey, "attributes"]}
 								rules={[{ required: true, message: "Missing attributes name" }]}
 							>
 								<Input placeholder="Атрибут:" />
-							</Form.Item>
-							<Form.Item
+							</Item>
+							<Item
 								{...field}
 								name={[field.name, "text"]}
 								fieldKey={[field.fieldKey, "text"]}
 								rules={[{ required: true, message: "Missing text name" }]}
 							>
 								<Input placeholder="Текст:" />
-							</Form.Item>
+							</Item>
 							<MinusCircleOutlined onClick={() => remove(field.name)} />
 						</Space>
 				))}
-					<Form.Item>
+					<Item>
 						<Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
 							Add field
 						</Button>
-					</Form.Item>
+					</Item>
 				</React.Fragment>
 		  )}
-		</Form.List>
+		</List>
 	  </React.Fragment>
   );
 };
