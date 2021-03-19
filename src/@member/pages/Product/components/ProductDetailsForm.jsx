@@ -3,6 +3,7 @@ import ProductDetailsImages from "pages/Product/components/ProductDetailsImages"
 import { Item } from "components/FormElements/Form";
 import Input from "components/FormElements/Input";
 import TextArea from "components/FormElements/TextArea";
+import Select from "components/FormElements/Select";
 
 const ProductDetailsForm = () => {
   const validations = [
@@ -21,9 +22,9 @@ const ProductDetailsForm = () => {
 
 		<TextArea label="Мета-тег Description:" name="productMetaDescription" />
 
-		<Input label="Мета-тег Keywords:" name="productMetaKeywords" />
+		<Select label="Мета-тег Keywords:" name="productMetaKeywords" open={false} tagRender={<Input />} mode="tags" />
 
-		<Input label="Теги товара:" name="productTags" />
+		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="productTags" />
 
 		<Item label="Фото:" name="productImages">
 
