@@ -1,6 +1,8 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Upload, Modal, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { Item, getForm } from "components/FormElements/Form";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -11,7 +13,9 @@ function getBase64(file) {
   });
 }
 
-export const ProductDetailsImages = () => {
+export const ProductDetailsImages = (props) => {
+  const { label, name } = props;
+
   const state = {
 	previewVisible: false,
 	previewImage: "",
@@ -62,15 +66,9 @@ export const ProductDetailsImages = () => {
 });
   };
 
-  const handleChange = (response) => setData((prevState) => {
-    console.log(response);
-   return (
-	   {
-	     ...prevState,
-	     fileList: response.fileList,
-	   }
-   );
-  });
+  const handleChange = (response) => {
+     setData((prevState) => ({ ...prevState, fileList: response.fileList }));
+};
 
 	const uploadButton = (
 		<div>
@@ -80,14 +78,16 @@ export const ProductDetailsImages = () => {
 	);
 
 	return (
-		<React.Fragment>
+		<Item label={label} name={name}>
 			<Upload
+				{...props}
 				listType="picture-card"
 				accept="image/png, image/jpeg"
 				fileList={fileList}
 				onPreview={handlePreview}
 				onChange={handleChange}
 				beforeUpload={beforeUpload}
+				onrender={getForm ? getForm.setFieldsValue({ "productImages": fileList }) : () => {}}
 			>
 				{fileList.length >= 5 ? null : uploadButton}
 			</Upload>
@@ -99,8 +99,13 @@ export const ProductDetailsImages = () => {
 			>
 				<img alt="example" style={{ width: "100%" }} src={previewImage} />
 			</Modal>
-		</React.Fragment>
+		</Item>
 	);
+};
+
+ProductDetailsImages.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default ProductDetailsImages;

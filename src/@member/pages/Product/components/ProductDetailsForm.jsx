@@ -1,6 +1,5 @@
 import React from "react";
-import ProductDetailsImages from "pages/Product/components/ProductDetailsImages";
-import { Item } from "components/FormElements/Form";
+import ProductDetailsImages from "pages/Product/containers/ProductDetailsImages";
 import Input from "components/FormElements/Input";
 import TextArea from "components/FormElements/TextArea";
 import Select from "components/FormElements/Select";
@@ -29,11 +28,7 @@ const ProductDetailsForm = () => {
 
 		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="productTags" showSearch={false} />
 
-		<Item label="Фото:" name="productImages" >
-
-			<ProductDetailsImages />
-
-		</Item>
+		<ProductDetailsImages label="Фото:" name="productImages" />
 
 	  </React.Fragment>
   );
