@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Upload, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
@@ -11,8 +11,8 @@ function getBase64(file) {
   });
 }
 
-class PicturesWall extends React.Component {
-  state = {
+export const ProductDetailsImages = () => {
+  const state = {
 	previewVisible: false,
 	previewImage: "",
 	previewTitle: "",
@@ -56,24 +56,43 @@ class PicturesWall extends React.Component {
 	],
   };
 
-  handleCancel = () => this.setState({ previewVisible: false });
+  const [data, setData] = useState(state);
 
-  handlePreview = async file => {
+  const { previewVisible, previewImage, fileList, previewTitle } = data;
+
+  console.log(fileList);
+
+  const handleCancel = () => setData((prevState) => {
+    return ({
+	      ...prevState,
+	      previewVisible: false,
+	    }
+    );
+  });
+
+  const handlePreview = async file => {
 	if (!file.url && !file.preview) {
 	  file.preview = await getBase64(file.originFileObj);
 	}
 
-	this.setState({
+	setData((prevState) => {
+ return ({
+   ...prevState,
 	  previewImage: file.url || file.preview,
 	  previewVisible: true,
 	  previewTitle: file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
 	});
+});
   };
 
-  handleChange = ({ fileList }) => this.setState({ fileList });
-
-  render() {
-	const { previewVisible, previewImage, fileList, previewTitle } = this.state;
+  const handleChange = ({ fileList }) => setData((prevState) => {
+   return (
+	   {
+	     ...prevState,
+          fileList,
+	   }
+   );
+  });
 
 	const uploadButton = (
 		<div>
@@ -88,8 +107,8 @@ class PicturesWall extends React.Component {
 				action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 				listType="picture-card"
 				fileList={fileList}
-				onPreview={this.handlePreview}
-				onChange={this.handleChange}
+				onPreview={handlePreview}
+				onChange={handleChange}
 			>
 				{fileList.length >= 8 ? null : uploadButton}
 			</Upload>
@@ -97,13 +116,12 @@ class PicturesWall extends React.Component {
 				visible={previewVisible}
 				title={previewTitle}
 				footer={null}
-				onCancel={this.handleCancel}
+				onCancel={handleCancel}
 			>
 				<img alt="example" style={{ width: "100%" }} src={previewImage} />
 			</Modal>
 		</React.Fragment>
 	);
-  }
-}
+};
 
-export default PicturesWall;
+export default ProductDetailsImages;
