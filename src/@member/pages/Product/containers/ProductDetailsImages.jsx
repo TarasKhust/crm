@@ -40,12 +40,14 @@ export const ProductDetailsImages = (props) => {
 
 	if (!isJpgOrPng) {
 	  message.error("You can only upload JPG/PNG file!");
+	  return false;
 	}
 
 	const isLt2M = file.size / 1024 / 1024 < 2;
 
 	if (!isLt2M) {
 	  message.error("Image must smaller than 2MB!");
+	  return false;
 	}
 
 	return isJpgOrPng && isLt2M;
@@ -66,8 +68,16 @@ export const ProductDetailsImages = (props) => {
 });
   };
 
+  const onSubmit = (evt) => {
+      evt.onSuccess();
+  };
+
   const handleChange = (response) => {
-     setData((prevState) => ({ ...prevState, fileList: response.fileList }));
+     const valid = beforeUpload(response.file);
+
+      if (valid) {
+        setData((prevState) => ({ ...prevState, fileList: response.fileList }));
+      }
 };
 
 	const uploadButton = (
@@ -86,7 +96,7 @@ export const ProductDetailsImages = (props) => {
 				fileList={fileList}
 				onPreview={handlePreview}
 				onChange={handleChange}
-				beforeUpload={beforeUpload}
+				customRequest={onSubmit}
 				onrender={getForm ? getForm.setFieldsValue({ "productImages": fileList }) : () => {}}
 			>
 				{fileList.length >= 5 ? null : uploadButton}
