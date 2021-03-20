@@ -117,12 +117,18 @@ const ProductDetailsConnectionsForm = () => {
 
   const options = brends.map((value) => ({ label: value, value: value }));
 
+  const validation = async (rule, val, name) => {
+	if (!val || val.length < 1) {
+	  return Promise.reject(new Error(`${name} не может быть пустим`));
+	}
+  };
+
   return (
 	  <React.Fragment>
 
-		<Select name="brand" options={options} label="Производитель:" />
+		<Select name="brand" options={options} label="Производитель:" rules={[{ validator: (rule, val) => validation(rule, val, "Производитель") }]} />
 
-		<Cascader name="mainCategory" label="Главная категория:" options={optionsMain} rules={[{ required: true, message: "Missing main category" }]} />
+		<Cascader name="mainCategory" label="Главная категория:" options={optionsMain} rules={[{ validator: (rule, val) => validation(rule, val, "Главная категория") }]} />
 
 		<MultiSelect name="showInCategory" label="Показывать в категориях:" options={treeData} />
 

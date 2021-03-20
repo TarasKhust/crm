@@ -16,7 +16,7 @@ const Cascader = (props) => {
 
   return (
 
-	  <Item label={label} name={name} rules={rules}>
+	  <Item label={label} name={name} rules={rules} hasFeedback>
 		<CascaderAntd
 			{...props}
 			options={options}

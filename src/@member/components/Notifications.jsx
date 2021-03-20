@@ -9,14 +9,9 @@ const Notifications = ({ message }) => {
   const [api, contextHolder] = notification.useNotification();
 
   const OpenNotification = () => {
-	api.info({
-	  message: <Alert
-		  message="Error"
-		  description={message}
-		  type="error"
-		  showIcon
-	           />,
-	  description: <Context.Consumer>{({ name }) => ""}</Context.Consumer>,
+	api.error({
+	  message: "Что-то Пошло не так",
+	  description: <Context.Consumer>{({ name }) => message}</Context.Consumer>,
 	  placement: "topRight",
 	});
   };

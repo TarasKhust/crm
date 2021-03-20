@@ -7,7 +7,7 @@ import Input from "components/FormElements/Input";
 const ProductDetailsAttributesForm = () => {
   return (
 	  <React.Fragment>
-		<List name="attributes">
+		<List name="attributes" style={ { width: "100%" }}>
 			{(fields, { add, remove }) => (
 				<React.Fragment>
 					{fields.map(field => (
@@ -17,8 +17,9 @@ const ProductDetailsAttributesForm = () => {
 								name={[field.name, "attributes"]}
 								fieldKey={[field.fieldKey, "attributes"]}
 								rules={[{ required: true, message: "Missing attributes name" }]}
+								style={ { width: "100%" }}
 							>
-								<Input placeholder="Атрибут:" />
+								<Input placeholder="Атрибут:" style={ { width: "100%" }} />
 							</Item>
 							<Item
 								{...field}
@@ -26,7 +27,7 @@ const ProductDetailsAttributesForm = () => {
 								fieldKey={[field.fieldKey, "text"]}
 								rules={[{ required: true, message: "Missing text name" }]}
 							>
-								<Input placeholder="Текст:" />
+								<Input placeholder="Текст:" style={ { width: "100%" }} />
 							</Item>
 							<MinusCircleOutlined onClick={() => remove(field.name)} />
 						</Space>

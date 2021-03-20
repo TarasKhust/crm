@@ -6,27 +6,30 @@ import TextArea from "components/FormElements/TextArea";
 import Select from "components/FormElements/Select";
 
 const ProductDetailsForm = () => {
-  const validations = [
-	    {
-		  required: true,
-		  message: "Please input a name product!",
-	    },
-	];
+  const validateVendor = async (rule, val, name) => {
+	if (!val || val.length < 1) {
+	  return Promise.reject(new Error(`${name} не может быть пустим`));
+	}
+
+	if (val <= 0) {
+	  return Promise.reject(new Error(`${name} не может быть 0`));
+	}
+  };
 
   return (
 	  <React.Fragment>
 
-		<Input name="productName" label="Наименование:" rules={validations} />
+		<Input name="productName" label="Наименование:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Наименование") }]} />
 
-		<TextArea label="Описание:" name="productDescriptions" />
+		<TextArea label="Описание:" name="productDescriptions" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
 
 		<TextArea label="Мета-тег Description:" name="productMetaDescription" />
 
-		<Select label="Мета-тег Keywords:" name="productMetaKeywords" open={false} tagRender={<Input />} mode="tags" />
+		<Select label="Мета-тег Keywords:" name="productMetaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
 
-		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="productTags" />
+		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="productTags" showSearch={false} />
 
-		<Item label="Фото:" name="productImages">
+		<Item label="Фото:" name="productImages" >
 
 			<ProductDetailsImages />
 

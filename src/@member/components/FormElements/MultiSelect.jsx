@@ -7,7 +7,7 @@ import { TreeSelect } from "antd";
 const { SHOW_PARENT } = TreeSelect;
 
 const MultiSelect = (props) => {
-  const { name, label, options } = props;
+  const { name, label, options, showSearch } = props;
   const [state, setState] = useState(["0-0-0"]);
 
   const onChange = value => {
@@ -23,6 +23,14 @@ const MultiSelect = (props) => {
 	});
   };
 
+  const handleOnFilterOptions = (input, option) => {
+	return option.title.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+  };
+
+  const handleOnFilterSort = (optionA, optionB) => {
+	return optionA.title.toLowerCase().localeCompare(optionB.title.toLowerCase());
+  };
+
   const tProps = {
 	treeData: options,
 	value: state.value,
@@ -36,8 +44,12 @@ const MultiSelect = (props) => {
   };
 
   return (
-	<Item label={label} name={name} {...props}>
-		<TreeSelect {...tProps} {...props} />
+	<Item label={label} name={name} {...props} hasFeedback>
+		<TreeSelect {...tProps} {...props}
+			showSearch={showSearch}
+			filterOption={handleOnFilterOptions}
+			filterSort={handleOnFilterSort}
+		/>
 	</Item>
   	);
 };
@@ -52,6 +64,11 @@ MultiSelect.propTypes = {
 		value: PropTypes.string,
 	  })
   ),
+  showSearch: PropTypes.bool,
+};
+
+MultiSelect.defaultProps = {
+  showSearch: true,
 };
 
 export default MultiSelect;

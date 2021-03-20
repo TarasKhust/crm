@@ -9,8 +9,8 @@ const TextArea = (props) => {
   const { children, name, label } = props;
 
   return (
-	  <Item label={label} name={name} {...props}>
-		<TextAreaAntd {...props}>
+	  <Item label={label} name={name} {...props} hasFeedback>
+		<TextAreaAntd {...props} autoCorrect autoSize autoSave>
 			{children}
 		</TextAreaAntd>
 	  </Item>

@@ -4,7 +4,7 @@ import { Select as SelectAntd } from "antd";
 import { Item } from "components/FormElements/Form";
 
 const Select = (props) => {
-  const { name, label, rules, onChange, onBlur, onFocus, onSearch, filterOption, filterSort } = props;
+  const { name, label, rules, onChange, onBlur, onFocus, onSearch, showSearch } = props;
 
   function handleOnChange(value) {
       onChange(value);
@@ -23,19 +23,19 @@ const Select = (props) => {
   }
 
   const handleOnFilterOptions = (input, option) => {
-    filterOption(input, option);
+    return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
   };
 
   const handleOnFilterSort = (optionA, optionB) => {
-    filterSort(optionA, optionB);
+    return optionA.label.toLowerCase().localeCompare(optionB.label.toLowerCase());
   };
 
   return (
-	<Item label={label} name={name} rules={rules}>
+	<Item label={label} name={name} rules={rules} hasFeedback>
 
 		<SelectAntd
 			{...props}
-			showSearch
+			showSearch={showSearch}
 			onSearch={handleOnSearch}
 			onChange={handleOnChange}
 			onFocus={handleOnFocus}
@@ -66,8 +66,7 @@ Select.propTypes = {
   onFocus: PropTypes.func,
   onSearch: PropTypes.func,
   rules: PropTypes.object,
-  filterOption: PropTypes.func,
-  filterSort: PropTypes.func,
+  showSearch: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -76,6 +75,5 @@ Select.defaultProps = {
   onChange: new Function(),
   onBlur: new Function(),
   onSearch: new Function(),
-  filterOption: new Function(),
-  filterSort: new Function(),
+  showSearch: true,
 };

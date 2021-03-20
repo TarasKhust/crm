@@ -5,14 +5,14 @@ import { Form as FromAntd } from "antd";
 export const { Item, List, ErrorList, Provider, useForm } = FromAntd;
 
 const Form = (props) => {
-  const { children } = props;
+  const { children, onFinish, onFinishFailed } = props;
 
-  const onFinish = (response) => {
-	console.log(response);
+  const handleOnFinish = (response) => {
+    onFinish(response);
   };
 
-  const onFinishFailed = (response) => {
-	console.log(response);
+  const handleOnFinishFailed = ({ values, errorFields, outOfDate }) => {
+    onFinishFailed({ values, errorFields, outOfDate });
   };
 
   return (
@@ -26,8 +26,8 @@ const Form = (props) => {
 		  }}
 		  layout="horizontal"
 		  size="default"
-		  onFinish={onFinish}
-		  onFinishFailed={onFinishFailed}
+		  onFinish={handleOnFinish}
+		  onFinishFailed={handleOnFinishFailed}
 	  >
 		{children}
 	  </FromAntd>
@@ -36,6 +36,14 @@ const Form = (props) => {
 
 Form.propTypes = {
   children: PropTypes.node,
+  onFinish: PropTypes.func,
+  onFinishFailed: PropTypes.func,
+};
+
+Form.defaultProps = {
+  children: PropTypes.node,
+  onFinish: new Function(),
+  onFinishFailed: new Function(),
 };
 
 export default Form;
