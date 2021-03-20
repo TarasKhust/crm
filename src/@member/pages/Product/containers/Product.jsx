@@ -28,6 +28,7 @@ const Product = () => {
   };
 
   const onSubmitFailed = (response) => {
+    console.log(response);
     setIsLoading(true);
 
     setTimeout(() => {

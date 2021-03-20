@@ -59,11 +59,11 @@ const ProductDetailsSearch = (props) => {
   const [value, setValue] = React.useState([]);
   return (
 	  <DebounceSelect
+		  {...props}
 		  label={label}
 		  name={name}
 		  mode="multiple"
 		  value={value}
-		  placeholder="Select users"
 		  fetchOptions={fetchUserList}
 		  onChange={(newValue) => {
 			setValue(newValue);

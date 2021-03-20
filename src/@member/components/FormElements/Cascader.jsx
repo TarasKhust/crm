@@ -21,7 +21,7 @@ const Cascader = (props) => {
 			{...props}
 			options={options}
 			onChange={onChange}
-			placeholder="Please select"
+			placeholder="Пожалуйста выбирите"
 			showSearch={{ filter }}
 		/>
 	  </Item>

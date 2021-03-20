@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Upload, Modal } from "antd";
+import { Upload, Modal, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 function getBase64(file) {
@@ -16,51 +16,12 @@ export const ProductDetailsImages = () => {
 	previewVisible: false,
 	previewImage: "",
 	previewTitle: "",
-	fileList: [
-	  {
-		uid: "-1",
-		name: "image.png",
-		status: "done",
-		url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-	  },
-	  {
-		uid: "-2",
-		name: "image.png",
-		status: "done",
-		url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-	  },
-	  {
-		uid: "-3",
-		name: "image.png",
-		status: "done",
-		url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-	  },
-	  {
-		uid: "-4",
-		name: "image.png",
-		status: "done",
-		url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-	  },
-	  {
-		uid: "-xxx",
-		percent: 50,
-		name: "image.png",
-		status: "uploading",
-		url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-	  },
-	  {
-		uid: "-5",
-		name: "image.png",
-		status: "error",
-	  },
-	],
+	fileList: [],
   };
 
   const [data, setData] = useState(state);
 
   const { previewVisible, previewImage, fileList, previewTitle } = data;
-
-  console.log(fileList);
 
   const handleCancel = () => setData((prevState) => {
     return ({
@@ -69,6 +30,22 @@ export const ProductDetailsImages = () => {
 	    }
     );
   });
+
+  const beforeUpload = (file) => {
+	const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+
+	if (!isJpgOrPng) {
+	  message.error("You can only upload JPG/PNG file!");
+	}
+
+	const isLt2M = file.size / 1024 / 1024 < 2;
+
+	if (!isLt2M) {
+	  message.error("Image must smaller than 2MB!");
+	}
+
+	return isJpgOrPng && isLt2M;
+  };
 
   const handlePreview = async file => {
 	if (!file.url && !file.preview) {
@@ -85,11 +62,12 @@ export const ProductDetailsImages = () => {
 });
   };
 
-  const handleChange = ({ fileList }) => setData((prevState) => {
+  const handleChange = (response) => setData((prevState) => {
+    console.log(response);
    return (
 	   {
 	     ...prevState,
-          fileList,
+	     fileList: response.fileList,
 	   }
    );
   });
@@ -104,13 +82,14 @@ export const ProductDetailsImages = () => {
 	return (
 		<React.Fragment>
 			<Upload
-				action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 				listType="picture-card"
+				accept="image/png, image/jpeg"
 				fileList={fileList}
 				onPreview={handlePreview}
 				onChange={handleChange}
+				beforeUpload={beforeUpload}
 			>
-				{fileList.length >= 8 ? null : uploadButton}
+				{fileList.length >= 5 ? null : uploadButton}
 			</Upload>
 			<Modal
 				visible={previewVisible}

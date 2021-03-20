@@ -126,13 +126,18 @@ const ProductDetailsConnectionsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Select name="brand" options={options} label="Производитель:" rules={[{ validator: (rule, val) => validation(rule, val, "Производитель") }]} />
+		<Select name="brand"
+			options={options}
+			label="Производитель:"
+			rules={[{ validator: (rule, val) => validation(rule, val, "Производитель") }]}
+			placeholder="Пожалуйста выбирите"
+		/>
 
 		<Cascader name="mainCategory" label="Главная категория:" options={optionsMain} rules={[{ validator: (rule, val) => validation(rule, val, "Главная категория") }]} />
 
-		<MultiSelect name="showInCategory" label="Показывать в категориях:" options={treeData} />
+		<MultiSelect name="showInCategory" label="Показывать в категориях:" options={treeData} placeholder="Пожалуйста выбирите" />
 
-		<ProductDetailsSearch name="relatedProducts" label="Сопутствующие товары:" />
+		<ProductDetailsSearch name="relatedProducts" label="Сопутствующие товары:" placeholder="Пожалуйста выбирите" />
 
 	  </React.Fragment>
   );
