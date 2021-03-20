@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import "antd/dist/antd.css";
-import { Alert, notification } from "antd";
+import { notification } from "antd";
 
 const Context = React.createContext({ name: "Default" });
 
