@@ -24,7 +24,7 @@ const InputNumber = (props) => {
 
   const onFormatter = (value) => {
     if (isFormatter) {
-      return `₴ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     return value;

@@ -25,7 +25,7 @@ const ProductDetailsForm = () => {
 
 		<Input name="vendorCode" label="Артикул:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Артикул") }]} />
 
-		<InputNumber name="productPrice" label="Цена:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Цена") }]} isFormatter />
+		<InputNumber name="productPrice" label="Цена:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Цена") }]} />
 
 		<InputNumber name="productCount" label="Количество:" min={0} />
 
