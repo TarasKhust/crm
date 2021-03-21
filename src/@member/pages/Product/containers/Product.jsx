@@ -1,12 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { Button, Tabs } from "antd";
-import Form from "components/FormElements/Form";
+import Form, { getForm } from "components/FormElements/Form";
 import ProductDetailsForm from "pages/Product/components/ProductDetailsForm";
 import ProductDetailsDataInfoForm from "pages/Product/components/ProductDetailsDataInfoForm";
 import ProductDetailsAttributesForm from "pages/Product/components/ProductDetailsAttributesForm";
 import ProductDetailsConnectionsForm from "pages/Product/components/ProductDetailsConnectionsForm";
 import Notifications from "components/Notifications";
-import { getForm } from "components/FormElements/Form";
 
 const Product = () => {
   const [error, setError] = useState([]);
