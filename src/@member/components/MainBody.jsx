@@ -7,6 +7,7 @@ import { Content } from "antd/es/layout/layout";
 const Catalog = lazy(() => import(/* webpackChunkName: "Catalog" */ "@member/pages/Catalog/CatalogOfProducts"));
 const Product = lazy(() => import(/* webpackChunkName: "Product" */ "@member/pages/Product/containers/Product"));
 const Category = lazy(() => import(/* webpackChunkName: "Category" */ "@member/pages/Category/index"));
+const Brands = lazy(() => import(/* webpackChunkName: "Brands" */ "@member/pages/Brands/index"));
 
 export default () => {
 	return (
@@ -29,7 +30,7 @@ export default () => {
 					</Route>
 
 					<Route exact path={routes.members.catalog.brands._}>
-						<div><h1>BRANDS</h1></div>
+						<Brands />
 					</Route>
 
 				</Switch>
