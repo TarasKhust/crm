@@ -58,16 +58,18 @@ module.exports = {
 		new HtmlWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "members",
-			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"), // шаблон
+			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"),
 		}),
 	    new HtmlWebpackPlugin({
 		  filename: "catalog",
-		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"), // шаблон
+		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"),
+	      chunks: ["member"],
 	    }),
-	  new HtmlWebpackPlugin({
+	     new HtmlWebpackPlugin({
 		filename: "product",
-		template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"), // шаблон
-	  }),
+		template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"),
+	    chunks: ["member"],
+        }),
 		new CleanWebpackPlugin(),
 	],
 
