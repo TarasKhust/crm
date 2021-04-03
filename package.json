@@ -19,7 +19,9 @@
     "build:dev": "webpack serve --config webpack.dev.js --progress",
     "start:dev": "npm run setup && npm run build:dev",
     "start:prod": "npm run setup && npm run build:prod",
-    "start:server": "npm run setup && npm run build:server"
+    "start:server": "npm run setup && npm run build:server",
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "jest": {
     "moduleNameMapper": {
@@ -88,7 +90,8 @@
     "redux-dynamic-middlewares": "2.0.0",
     "redux-thunk": "2.3.0",
     "sass": "1.32.7",
-    "store": "2.0.12"
+    "store": "2.0.12",
+    "express": "4.17.1"
   },
   "devDependencies": {
     "@babel/core": "7.12.16",

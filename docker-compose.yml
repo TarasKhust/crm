@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+
+  sample-app:
+    container_name: crm_client
+    build:
+      context: ../crm
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
