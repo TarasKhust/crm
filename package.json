@@ -20,7 +20,8 @@
     "start:dev": "npm run setup && npm run build:dev",
     "start:prod": "npm run setup && npm run build:prod",
     "start:server": "npm run setup && npm run build:server",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
     "@ant-design/icons": "4.5.0",
