@@ -11,12 +11,16 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
 
-app.get("/user", (req, res) => {
-  res.sendFile(path.join(publicPath, "user.html"));
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(publicPath, "login.html"));
 });
 
 app.get("/contact", (req, res) => {
   res.sendFile(path.join(publicPath, "contact.html"));
+});
+
+app.get("/members", (req, res) => {
+  res.sendFile(path.join(publicPath, "members.html"));
 });
 
 app.listen(port, () => {

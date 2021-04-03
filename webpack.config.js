@@ -55,18 +55,21 @@ module.exports = {
 			filename: "[name].css?[contenthash:6]",
 			chunkFilename: "[id].css?[contenthash:6]",
 		}),
-		new HtmlWebpackPlugin(),
+	    new HtmlWebpackPlugin({
+		  filename: "login.html",
+		  template: path.resolve(__dirname, "./src/login.html"),
+	    }),
 		new HtmlWebpackPlugin({
-			filename: "members",
+			filename: "members.html",
 			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"),
 		}),
 	    new HtmlWebpackPlugin({
-		  filename: "catalog",
+		  filename: "catalog.html",
 		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"),
 	      chunks: ["member"],
 	    }),
 	     new HtmlWebpackPlugin({
-		filename: "product",
+		filename: "product.html",
 		template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"),
 	    chunks: ["member"],
         }),
