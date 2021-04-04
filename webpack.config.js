@@ -56,7 +56,7 @@ module.exports = {
 			chunkFilename: "[id].css?[contenthash:6]",
 		}),
 	    new HtmlWebpackPlugin({
-		  filename: "login.html",
+	      filename: process.env.NODE_ENV === "development" ? "login" : "login.html",
 		  template: path.resolve(__dirname, "./src/login.html"),
 	    }),
 		new HtmlWebpackPlugin({
