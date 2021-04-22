@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import { Form, Input, Button, Alert } from "antd";
+import { Form, Input, Button } from "antd";
 import "../loginStyle.scss";
 import { useLogin } from "api/login.api";
 import Notification from "components/Notifications";
