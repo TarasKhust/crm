@@ -1,26 +1,27 @@
 import React, { Fragment, useState } from "react";
-import { Button, Tabs } from "antd";
+import { Button } from "antd";
 import Form, { getForm } from "components/FormElements/Form";
 import Notifications from "components/Notifications";
 import BrandsForm from "pages/Brands/components/BrandsForm";
+import { useCreateBrand, useQueryBrand } from "api/brand-api";
+import { useMutation } from "@apollo/client";
+import { BRAND_MUTATION } from "api/schema/brand.schema";
 
 const Brands = () => {
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { TabPane } = Tabs;
+  const { setValue, data, error: errorBrand, loading } = useCreateBrand();
+  const { data: brand, error: errorBr, loading: brandLoading } = useMutation(BRAND_MUTATION);
 
-  const callback = (key) => {
-	console.log(key);
-  };
+  console.log(brand);
 
   const onSubmit = (response) => {
-	setIsLoading(true);
+	console.log(data);
+	console.log(errorBrand);
 
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
-	console.log(response);
+	setValue({ variables: { data: { response } } }).then(({ data: { setValue: { status } } }) => {
+	  console.log(status);
+	});
   };
 
   const onSubmitFailed = (response) => {
@@ -39,11 +40,10 @@ const Brands = () => {
   };
 
   const initialValues = {
-    BrandtName: "",
-    BrandDescriptions: "",
-    BrandMetaDescription: "",
-    BrandMetaKeywords: [],
-    BrandTags: [],
+    title: "",
+    description: "",
+    metaDescription: "",
+    metaKeywords: [],
   };
 
   return (
@@ -62,14 +62,10 @@ const Brands = () => {
 			onFinishFailed={onSubmitFailed}
 		>
 
-			<Tabs onChange={callback} type="card">
-				<TabPane tab="Главная" key="1">
-					<BrandsForm />
-				</TabPane>
-			</Tabs>
+			<BrandsForm />
 
 		</Form>
-		<Button type="primary" htmlType="submit" form="create_brands" loading={isLoading}>
+		<Button type="primary" htmlType="submit" form="create_brands" loading={loading}>
 			Сохранить
 		</Button>
 		<Button type="secondary" onClick={onReset}>
