@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const BRAND_MUTATION = gql`
-    mutation create($date: String) {
-        createBrand(data: $data) {
+    mutation create($input: CreateBrandInput!) {
+        createBrand(createBrandInput: $input) {
             id
         }
     }

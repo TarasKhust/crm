@@ -3,35 +3,17 @@ import { Button } from "antd";
 import Form, { getForm } from "components/FormElements/Form";
 import Notifications from "components/Notifications";
 import BrandsForm from "pages/Brands/components/BrandsForm";
-import { useCreateBrand, useQueryBrand } from "api/brand-api";
-import { useMutation } from "@apollo/client";
-import { BRAND_MUTATION } from "api/schema/brand.schema";
+import { useCreateBrand } from "api/brand-api";
 
 const Brands = () => {
   const [error, setError] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const { setValue, data, error: errorBrand, loading } = useCreateBrand();
-  const { data: brand, error: errorBr, loading: brandLoading } = useMutation(BRAND_MUTATION);
-
-  console.log(brand);
 
   const onSubmit = (response) => {
-	console.log(data);
-	console.log(errorBrand);
-
-	setValue({ variables: { data: { response } } }).then(({ data: { setValue: { status } } }) => {
-	  console.log(status);
-	});
+	setValue({ variables: { input: { ...response } } });
   };
 
   const onSubmitFailed = (response) => {
-	console.log(response);
-	setIsLoading(true);
-
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
 	setError(response.errorFields);
   };
 
@@ -40,10 +22,10 @@ const Brands = () => {
   };
 
   const initialValues = {
-    title: "",
-    description: "",
-    metaDescription: "",
-    metaKeywords: [],
+    name: "",
+	description: "",
+	metaTagsDescription: "",
+	metaTags: [],
   };
 
   return (
@@ -54,6 +36,16 @@ const Brands = () => {
 			  <Notifications key={index} message={errors} />
 		  );
 		})}
+
+		{errorBrand
+		   && (
+			  <Notifications key="form" message={errorBrand?.message} typeOfNotification="error" />
+		  )}
+
+		{data
+		&& (
+			<Notifications key="success" message={errorBrand?.message} typeOfNotification="success" />
+		)}
 
 		<Form name="create_brands"
 
