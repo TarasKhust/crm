@@ -55,23 +55,21 @@ module.exports = {
 			filename: "[name].css?[contenthash:6]",
 			chunkFilename: "[id].css?[contenthash:6]",
 		}),
+	  	new HtmlWebpackPlugin(), // Generates default index.html
+
 	    new HtmlWebpackPlugin({
 	      filename: process.env.NODE_ENV === "development" ? "login" : "login.html",
 		  template: path.resolve(__dirname, "./src/login.html"),
 	    }),
-		new HtmlWebpackPlugin({
-			filename: "members.html",
-			template: path.resolve(__dirname, "./src/@member/pages/Main/main.html"),
-		}),
 	    new HtmlWebpackPlugin({
-		  filename: "catalog.html",
+		  filename: process.env.NODE_ENV === "development" ? "catalog" : "catalog.html",
 		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"),
 	      chunks: ["member"],
 	    }),
 	     new HtmlWebpackPlugin({
-		filename: "product.html",
-		template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"),
-	    chunks: ["member"],
+		  filename: process.env.NODE_ENV === "development" ? "product" : "product.html",
+		  template: path.resolve(__dirname, "./src/@member/pages/Product/product.html"),
+		  chunks: ["member"],
         }),
 		new CleanWebpackPlugin(),
 	],

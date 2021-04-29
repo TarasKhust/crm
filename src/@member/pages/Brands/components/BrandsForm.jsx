@@ -17,15 +17,13 @@ const BrandsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Input name="BrandtName" label="Имя Производителя:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Имя Производителя") }]} />
+		<Input name="name" label="Имя Производителя:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Имя Производителя") }]} />
 
-		<TextArea label="Описание:" name="BrandDescriptions" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
+		<TextArea name="description" label="Описание:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
 
-		<TextArea label="Мета-тег Description:" name="BrandMetaDescription" />
+		<TextArea name="metaTagsDescription" label="Мета-тег Description:" />
 
-		<Select label="Мета-тег Keywords:" name="BrandMetaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
-
-		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="BrandTags" showSearch={false} />
+		<Select name="metaTags" label="Мета-тег Keywords:" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
 
 	  </React.Fragment>
   );

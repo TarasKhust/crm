@@ -1,36 +1,19 @@
 import React, { Fragment, useState } from "react";
-import { Button, Tabs } from "antd";
+import { Button } from "antd";
 import Form, { getForm } from "components/FormElements/Form";
 import Notifications from "components/Notifications";
 import BrandsForm from "pages/Brands/components/BrandsForm";
+import { useCreateBrand } from "api/brand-api";
 
 const Brands = () => {
   const [error, setError] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { TabPane } = Tabs;
-
-  const callback = (key) => {
-	console.log(key);
-  };
+  const { setValue, data, error: errorBrand, loading } = useCreateBrand();
 
   const onSubmit = (response) => {
-	setIsLoading(true);
-
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
-	console.log(response);
+	setValue({ variables: { input: { ...response } } });
   };
 
   const onSubmitFailed = (response) => {
-	console.log(response);
-	setIsLoading(true);
-
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
 	setError(response.errorFields);
   };
 
@@ -39,11 +22,10 @@ const Brands = () => {
   };
 
   const initialValues = {
-    BrandtName: "",
-    BrandDescriptions: "",
-    BrandMetaDescription: "",
-    BrandMetaKeywords: [],
-    BrandTags: [],
+    name: "",
+	description: "",
+	metaTagsDescription: "",
+	metaTags: [],
   };
 
   return (
@@ -55,6 +37,16 @@ const Brands = () => {
 		  );
 		})}
 
+		{errorBrand
+		   && (
+			  <Notifications key="form" message={errorBrand?.message} typeOfNotification="error" />
+		  )}
+
+		{data
+		&& (
+			<Notifications key="success" message={errorBrand?.message} typeOfNotification="success" />
+		)}
+
 		<Form name="create_brands"
 
 			initialValues={initialValues}
@@ -62,14 +54,10 @@ const Brands = () => {
 			onFinishFailed={onSubmitFailed}
 		>
 
-			<Tabs onChange={callback} type="card">
-				<TabPane tab="Главная" key="1">
-					<BrandsForm />
-				</TabPane>
-			</Tabs>
+			<BrandsForm />
 
 		</Form>
-		<Button type="primary" htmlType="submit" form="create_brands" loading={isLoading}>
+		<Button type="primary" htmlType="submit" form="create_brands" loading={loading}>
 			Сохранить
 		</Button>
 		<Button type="secondary" onClick={onReset}>
