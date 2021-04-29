@@ -62,9 +62,9 @@ const ProductDetailsForm = () => {
 			placeholder="Пожалуйста выбирите"
 		/>
 
-		<Input name="categorySeoUrl" label="SEO URL:" />
+		<Input name="seoUrl" label="SEO URL:" />
 
-		<Item name="categoryStatus" label="Отображать на сайте:">
+		<Item name="status" label="Отображать на сайте:">
 			<Switch
 				checkedChildren={<CheckOutlined />}
 				unCheckedChildren={<CloseOutlined />}

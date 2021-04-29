@@ -4,10 +4,11 @@ import Form, { getForm } from "components/FormElements/Form";
 import Notifications from "components/Notifications";
 import CategoryForm from "pages/Category/components/CategoryForm";
 import CategoryDataInfoForm from "pages/Category/components/CategoryDataInfoForm";
+import { useCreateCategory } from "api/category-api";
 
 const Category = () => {
   const [error, setError] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { setValue, error: errorMessage, data, loading } = useCreateCategory();
   const { TabPane } = Tabs;
 
   const callback = (key) => {
@@ -15,23 +16,10 @@ const Category = () => {
   };
 
   const onSubmit = (response) => {
-	setIsLoading(true);
-
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
-	console.log(response);
+	  setValue({ variables: { input: { ...response } } });
   };
 
   const onSubmitFailed = (response) => {
-	console.log(response);
-	setIsLoading(true);
-
-	setTimeout(() => {
-	  setIsLoading(false);
-	}, 3000);
-
 	setError(response.errorFields);
   };
 
@@ -41,13 +29,12 @@ const Category = () => {
 
   const initialValues = {
     mainCategory: [],
-    categorySeoUrl: "",
-    categoryStatus: "",
-    categoryName: "",
-    categoryDescriptions: "",
-    categoryMetaDescription: "",
-    categoryMetaKeywords: [],
-    categoryTags: [],
+    seoUrl: "",
+    status: "",
+    name: "",
+    description: "",
+    metaDescription: "",
+    metaKeywords: [],
   };
 
   return (
@@ -58,6 +45,16 @@ const Category = () => {
 			  <Notifications key={index} message={errors} />
 		  );
 		})}
+
+		  {errorMessage
+		  && (
+			<Notifications key="form" message={errorMessage?.message} typeOfNotification="error" />
+		  )}
+
+		  {data
+		  && (
+			<Notifications key="success" message={errorMessage?.message} typeOfNotification="success" />
+		  )}
 
 		<Form name="create_category"
 
@@ -76,7 +73,7 @@ const Category = () => {
 			</Tabs>
 
 		</Form>
-		<Button type="primary" htmlType="submit" form="create_category" loading={isLoading}>
+		<Button type="primary" htmlType="submit" form="create_category" loading={loading}>
 			Сохранить
 		</Button>
 		<Button type="secondary" onClick={onReset}>

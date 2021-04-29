@@ -17,15 +17,13 @@ const CategoryForm = () => {
   return (
 	  <React.Fragment>
 
-		<Input name="categoryName" label="Название категории:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Название категории") }]} />
+		<Input name="name" label="Название категории:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Название категории") }]} />
 
-		<TextArea label="Описание:" name="categoryDescriptions" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
+		<TextArea label="Описание:" name="description" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
 
-		<TextArea label="Мета-тег Description:" name="categoryMetaDescription" />
+		<TextArea label="Мета-тег Description:" name="metaDescription" />
 
-		<Select label="Мета-тег Keywords:" name="categoryMetaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
-
-		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="categoryTags" showSearch={false} />
+		<Select label="Мета-тег Keywords:" name="metaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
 
 	  </React.Fragment>
   );
