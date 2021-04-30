@@ -61,6 +61,11 @@ module.exports = {
 	      filename: process.env.NODE_ENV === "development" ? "login" : "login.html",
 		  template: path.resolve(__dirname, "./src/login.html"),
 	    }),
+
+			new HtmlWebpackPlugin({
+				filename: process.env.NODE_ENV === "development" ? "member" : "member.html",
+				template: path.resolve(__dirname, "./src/@member/pages/Main/member.html"),
+			}),
 	    new HtmlWebpackPlugin({
 		  filename: process.env.NODE_ENV === "development" ? "catalog" : "catalog.html",
 		  template: path.resolve(__dirname, "./src/@member/pages/Catalog/catalog.html"),

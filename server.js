@@ -19,8 +19,8 @@ app.get("/contact", (req, res) => {
   res.sendFile(path.join(publicPath, "contact.html"));
 });
 
-app.get("/members", (req, res) => {
-  res.sendFile(path.join(publicPath, "members.html"));
+app.get("/member", (req, res) => {
+  res.sendFile(path.join(publicPath, "member.html"));
 });
 
 app.listen(port, () => {
