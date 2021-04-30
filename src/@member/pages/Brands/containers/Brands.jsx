@@ -22,10 +22,10 @@ const Brands = () => {
   };
 
   const initialValues = {
-    name: "",
-	description: "",
-	metaTagsDescription: "",
-	metaTags: [],
+	  name: "",
+		description: "",
+		metaTagsDescription: "",
+		metaTags: [],
   };
 
   return (
