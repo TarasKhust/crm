@@ -28,13 +28,13 @@ const Category = () => {
   };
 
   const initialValues = {
-    mainCategory: [],
+	  parentCategory: 6,
     seoUrl: "",
-    status: "",
+    status: true,
     name: "",
     description: "",
     metaDescription: "",
-    metaKeywords: [],
+	  metaDataTagKeyword: [],
   };
 
   return (
@@ -42,7 +42,7 @@ const Category = () => {
 
 		{error.length > 0 && error.map(({ errors }, index) => {
 		  return (
-			  <Notifications key={index} message={errors} />
+			  <Notifications key={index} message={errors} typeOfNotification="error" />
 		  );
 		})}
 

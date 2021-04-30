@@ -8,12 +8,6 @@ import Input from "components/FormElements/Input";
 import MultiSelect from "components/FormElements/MultiSelect";
 
 const ProductDetailsForm = () => {
-  const validateVendor = async (rule, val, name) => {
-    if (!val || val.length < 1) {
-      return Promise.reject(new Error(`${name} не может быть пустим`));
-    }
-  };
-
   const treeData = [
 	{
 	  title: "Node1",
@@ -55,9 +49,8 @@ const ProductDetailsForm = () => {
 	  <React.Fragment>
 
 		<MultiSelect
-			name="mainCategory"
+			name="parentCategory"
 			label="Родительская категория:"
-			rules={[{ validator: (rule, val) => validateVendor(rule, val, "Родительская категория") }]}
 			options={treeData}
 			placeholder="Пожалуйста выбирите"
 		/>

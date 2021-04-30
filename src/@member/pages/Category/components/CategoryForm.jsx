@@ -23,7 +23,7 @@ const CategoryForm = () => {
 
 		<TextArea label="Мета-тег Description:" name="metaDescription" />
 
-		<Select label="Мета-тег Keywords:" name="metaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
+		<Select label="Мета-тег Keywords:" name="metaDataTagKeyword" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
 
 	  </React.Fragment>
   );
