@@ -4,19 +4,34 @@ import Form, { getForm } from "components/FormElements/Form";
 import Notifications from "components/Notifications";
 import CategoryForm from "pages/Category/components/CategoryForm";
 import CategoryDataInfoForm from "pages/Category/components/CategoryDataInfoForm";
-import { useCreateCategory } from "api/category-api";
+import { useCreateCategory, useQueryCategory } from "api/category-api";
+import { CATEGORY_QUERY } from "api/schema/category.schema";
 
 const Category = () => {
   const [error, setError] = useState([]);
   const { setValue, error: errorMessage, data, loading } = useCreateCategory();
+  const { error: errorQuery, data: dataQuery, loading: loadingQuery } = useQueryCategory();
   const { TabPane } = Tabs;
+
+	const items = !loadingQuery ? dataQuery?.categoryFindAll : [];
 
   const callback = (key) => {
 	console.log(key);
   };
 
   const onSubmit = (response) => {
-	  setValue({ variables: { input: { ...response } } });
+	  const {
+    description,
+	  metaDataTagKeyword,
+	  metaDescription,
+	  name,
+	  parentCategory,
+	  seoUrl,
+	  status } = response;
+
+	  setValue({ variables: { input: { description, metaDescription, metaDataTagKeyword, name,
+				  parentCategory: Number(parentCategory), seoUrl, status } },
+		  refetchQueries: [{ query: CATEGORY_QUERY }] });
   };
 
   const onSubmitFailed = (response) => {
@@ -28,7 +43,7 @@ const Category = () => {
   };
 
   const initialValues = {
-	  parentCategory: 6,
+	  parentCategory: "",
     seoUrl: "",
     status: true,
     name: "",
@@ -68,7 +83,7 @@ const Category = () => {
 					<CategoryForm />
 				</TabPane>
 				<TabPane forceRender tab="Данные" key="2">
-					<CategoryDataInfoForm />
+					<CategoryDataInfoForm items={items} />
 				</TabPane>
 			</Tabs>
 

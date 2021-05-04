@@ -7,3 +7,23 @@ export const CATEGORY_MUTATION = gql`
         }
     }
 `;
+
+export const CATEGORY_QUERY = gql`
+    query categoryFindAll {
+        categoryFindAll{
+            title,
+            label,
+            id,
+            disabled,
+            value
+            children{
+                id,
+                title,
+                disabled,
+                value
+            }
+
+
+        }
+    }
+`;

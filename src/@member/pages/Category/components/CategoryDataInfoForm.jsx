@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import {
   Switch,
@@ -7,51 +8,14 @@ import { Item } from "components/FormElements/Form";
 import Input from "components/FormElements/Input";
 import MultiSelect from "components/FormElements/MultiSelect";
 
-const ProductDetailsForm = () => {
-  const treeData = [
-	{
-	  title: "Node1",
-	  value: "0-0",
-	  key: "0-0",
-	  children: [
-		{
-		  title: "Child Node1",
-		  value: "0-0-0",
-		  key: "0-0-0",
-		},
-	  ],
-	},
-	{
-	  title: "Node2",
-	  value: "0-1",
-	  key: "0-1",
-	  children: [
-		{
-		  title: "Child Node3",
-		  value: "0-1-0",
-		  key: "0-1-0",
-		},
-		{
-		  title: "Child Node4",
-		  value: "0-1-1",
-		  key: "0-1-1",
-		},
-		{
-		  title: "Child Node5",
-		  value: "0-1-2",
-		  key: "0-1-2",
-		},
-	  ],
-	},
-  ];
-
+const ProductDetailsForm = ({ items }) => {
   return (
 	  <React.Fragment>
 
 		<MultiSelect
 			name="parentCategory"
 			label="Родительская категория:"
-			options={treeData}
+			options={items}
 			placeholder="Пожалуйста выбирите"
 		/>
 
@@ -70,3 +34,11 @@ const ProductDetailsForm = () => {
 };
 
 export default ProductDetailsForm;
+
+ProductDetailsForm.propTypes = {
+  items: PropTypes.array,
+};
+
+ProductDetailsForm.defaultProps = {
+  items: [],
+};

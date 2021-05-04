@@ -8,7 +8,7 @@ const { SHOW_PARENT } = TreeSelect;
 
 const MultiSelect = (props) => {
   const { name, label, options, showSearch } = props;
-  const [state, setState] = useState(["0-0-0"]);
+  const [state, setState] = useState([""]);
 
   const onChange = value => {
 	console.log("onChange ", value);
@@ -35,7 +35,6 @@ const MultiSelect = (props) => {
 	treeData: options,
 	value: state.value,
 	onChange: onChange,
-	treeCheckable: true,
 	showCheckedStrategy: SHOW_PARENT,
 	placeholder: "Please select",
 	style: {
@@ -46,6 +45,7 @@ const MultiSelect = (props) => {
   return (
 	<Item label={label} name={name} {...props} hasFeedback>
 		<TreeSelect {...tProps} {...props}
+			key="id"
 			showSearch={showSearch}
 			filterOption={handleOnFilterOptions}
 			filterSort={handleOnFilterSort}
