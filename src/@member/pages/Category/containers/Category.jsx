@@ -10,7 +10,7 @@ import { CATEGORY_QUERY } from "api/schema/category.schema";
 const Category = () => {
   const [error, setError] = useState([]);
   const { setValue, error: errorMessage, data, loading } = useCreateCategory();
-  const { error: errorQuery, data: dataQuery, loading: loadingQuery } = useQueryCategory();
+  const { data: dataQuery, loading: loadingQuery } = useQueryCategory();
   const { TabPane } = Tabs;
 
 	const items = !loadingQuery ? dataQuery?.categoryFindAll : [];
@@ -29,8 +29,16 @@ const Category = () => {
 	  seoUrl,
 	  status } = response;
 
-	  setValue({ variables: { input: { description, metaDescription, metaDataTagKeyword, name,
-				  parentCategory: Number(parentCategory), seoUrl, status } },
+	  const data = {
+		  description, metaDescription, metaDataTagKeyword, name,
+		  seoUrl, status,
+	  };
+
+	  if (parentCategory > 0) {
+	  	data.parentCategory = Number(parentCategory);
+	  }
+
+	  setValue({ variables: { input: data },
 		  refetchQueries: [{ query: CATEGORY_QUERY }] });
   };
 
