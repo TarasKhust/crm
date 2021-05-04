@@ -8,7 +8,7 @@ const { SHOW_PARENT } = TreeSelect;
 
 const MultiSelect = (props) => {
   const { name, label, options, showSearch } = props;
-  const [state, setState] = useState([""]);
+  const [state, setState] = useState([]);
 
   const onChange = value => {
 	console.log("onChange ", value);

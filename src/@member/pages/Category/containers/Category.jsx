@@ -51,7 +51,7 @@ const Category = () => {
   };
 
   const initialValues = {
-	  parentCategory: "",
+	  parentCategory: [],
     seoUrl: "",
     status: true,
     name: "",
