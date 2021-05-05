@@ -18,17 +18,17 @@ const ProductDetailsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Input name="productName" label="Наименование:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Наименование") }]} />
+		<Input name="name" label="Наименование:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Наименование") }]} />
 
-		<TextArea label="Описание:" name="productDescriptions" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
+		<TextArea label="Описание:" name="description" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Описание") }]} />
 
-		<TextArea label="Мета-тег Description:" name="productMetaDescription" />
+		<TextArea label="Мета-тег Description:" name="metaDescription" />
 
-		<Select label="Мета-тег Keywords:" name="productMetaKeywords" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
+		<Select label="Мета-тег Keywords:" name="metaDataTagKeyword" open={false} tagRender={<Input />} mode="tags" showSearch={false} />
 
-		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="productTags" showSearch={false} />
+		<Select mode="tags" open={false} tagRender={<Input />} label="Теги товара:" name="tags" showSearch={false} />
 
-		<ProductDetailsImages label="Фото:" name="productImages" />
+		<ProductDetailsImages label="Фото:" name="image" />
 
 	  </React.Fragment>
   );

@@ -23,19 +23,19 @@ const ProductDetailsForm = () => {
   return (
 	  <React.Fragment>
 
-		<Input name="vendorCode" label="Артикул:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Артикул") }]} />
+		<Input name="vendor" label="Артикул:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Артикул") }]} />
 
-		<InputNumber name="productPrice" label="Цена:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Цена") }]} />
+		<InputNumber name="price" label="Цена:" rules={[{ validator: (rule, val) => validateVendor(rule, val, "Цена") }]} />
 
-		<InputNumber name="productCount" label="Количество:" min={0} />
+		<InputNumber name="count" label="Количество:" min={0} />
 
-		<InputNumber name="productMinimalCount" label="Минимальное количество:" min={1} />
+		<InputNumber name="minimalCount" label="Минимальное количество:" min={1} />
 
-		<Select name="productStatusExist" label="Отсутствует на складе:" options={productState} />
+		<Select name="statusExist" label="Отсутствует на складе:" options={productState} />
 
-		<Input name="productSeoUrl" label="SEO URL:" />
+		<Input name="seoUrl" label="SEO URL:" />
 
-		<Item name="productStatus" label="Отображать на сайте:">
+		<Item name="status" label="Отображать на сайте:">
 			<Switch
 				checkedChildren={<CheckOutlined />}
 				unCheckedChildren={<CloseOutlined />}

@@ -12,10 +12,7 @@ export const GET_BRANDS = gql`
     query getAllBrands {
         getAllBrands {
             id,
-            name,
-            description,
-            metaTags,
-            metaTagsDescription
+            name
         }
     }
 `;

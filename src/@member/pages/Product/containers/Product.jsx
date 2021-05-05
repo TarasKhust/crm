@@ -6,25 +6,41 @@ import ProductDetailsDataInfoForm from "pages/Product/components/ProductDetailsD
 import ProductDetailsAttributesForm from "pages/Product/components/ProductDetailsAttributesForm";
 import ProductDetailsConnectionsForm from "pages/Product/components/ProductDetailsConnectionsForm";
 import Notifications from "components/Notifications";
+import { useCreateProduct } from "api/product.api";
 
 const Product = () => {
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+	const { setValue, error: errorMessage, data, loading } = useCreateProduct();
   const { TabPane } = Tabs;
 
-  const callback = (key) => {
-	console.log(key);
-  };
+	const onSubmit = (response) => {
+		const {
+			attributes,
+			name,
+			description,
+			metaDescription,
+			metaDataTagKeyword,
+			tags,
+			image,
+			vendor,
+			price,
+			count,
+			minimalCount,
+			statusExist,
+			status,
+			seoUrl,
+			brand,
+			category,
+			relatedProducts } = response;
 
-  const onSubmit = (response) => {
-    setIsLoading(true);
+		const data = {
+			description, metaDescription, metaDataTagKeyword, name, tags,
+			seoUrl, status, image, vendor, price, count, minimalCount, statusExist, brand, category: Number(category),
+		};
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    console.log(response);
-  };
+		setValue({ variables: { input: data } });
+	};
 
   const onSubmitFailed = (response) => {
     console.log(response);
@@ -43,22 +59,21 @@ const Product = () => {
 
   const initialValues = {
     attributes: [],
-    productName: "",
-    productDescriptions: "",
-    productMetaDescription: "",
-    productMetaKeywords: [],
-    productTags: [],
-    productImages: "",
-    vendorCode: "",
-    productPrice: 1,
-    productCount: 0,
-    productMinimalCount: 1,
-    productStatusExist: "1",
-    productStatus: true,
-    productSeoUrl: "",
+    name: "",
+	  description: "",
+	  metaDescription: "",
+	  metaDataTagKeyword: [],
+	  tags: [],
+	  image: "",
+	  vendor: "",
+	  price: 1,
+	  count: 0,
+    minimalCount: 1,
+    statusExist: "1",
+    status: true,
+    seoUrl: "",
     brand: [],
-    mainCategory: [],
-    showInCategory: [],
+	  category: [],
     relatedProducts: [],
   };
 
@@ -71,6 +86,16 @@ const Product = () => {
 	     );
 	  })}
 
+		{errorMessage
+		&& (
+			<Notifications key="form" message={errorMessage?.message} typeOfNotification="error" />
+		)}
+
+		{data
+		&& (
+			<Notifications key="success" message={errorMessage?.message} typeOfNotification="success" />
+		)}
+
 		<Form name="create_product"
 
 			initialValues={initialValues}
@@ -78,7 +103,7 @@ const Product = () => {
 			onFinishFailed={onSubmitFailed}
 		>
 
-			<Tabs onChange={callback} type="card">
+			<Tabs type="card">
 				<TabPane tab="Главная" key="1">
 					<ProductDetailsForm />
 				</TabPane>
