@@ -69,6 +69,7 @@ export const ProductDetailsImages = (props) => {
   };
 
   const onSubmit = (evt) => {
+	  console.log(evt);
       evt.onSuccess();
   };
 
@@ -91,13 +92,13 @@ export const ProductDetailsImages = (props) => {
 		<Item label={label} name={name}>
 			<Upload
 				{...props}
+				action="http://localhost:3000/api/files/upload"
 				listType="picture-card"
 				accept="image/png, image/jpeg"
 				fileList={fileList}
 				onPreview={handlePreview}
 				onChange={handleChange}
-				customRequest={onSubmit}
-				onrender={getForm ? getForm.setFieldsValue({ "productImages": fileList }) : () => {}}
+				onrender={getForm ? getForm.setFieldsValue({ "image": fileList }) : () => {}}
 			>
 				{fileList.length >= 5 ? null : uploadButton}
 			</Upload>

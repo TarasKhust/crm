@@ -39,11 +39,18 @@ const Product = () => {
 			seoUrl, status, image, vendor, price, count, minimalCount, statusExist, brand, category: Number(category),
 		};
 
+		data.image = image.map((item) => item.response[0]);
+
 		setValue({ variables: { input: data } });
 	};
 
   const onSubmitFailed = (response) => {
-    console.log(response);
+    console.log(response.values);
+
+	  const filterImages = response.values.image.map((item) => item.response[0]);
+
+	  console.log(filterImages);
+
     setIsLoading(true);
 
     setTimeout(() => {
@@ -64,7 +71,7 @@ const Product = () => {
 	  metaDescription: "",
 	  metaDataTagKeyword: [],
 	  tags: [],
-	  image: "",
+	  image: [],
 	  vendor: "",
 	  price: 1,
 	  count: 0,
