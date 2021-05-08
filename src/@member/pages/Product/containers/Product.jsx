@@ -39,7 +39,9 @@ const Product = () => {
 			seoUrl, status, image, vendor, price, count, minimalCount, statusExist, brand, category: Number(category),
 		};
 
-		data.image = image.map((item) => item.response[0]);
+		console.log(image);
+
+		data.image = image.map((item) => item.response);
 
 		setValue({ variables: { input: data } });
 	};
@@ -47,7 +49,7 @@ const Product = () => {
   const onSubmitFailed = (response) => {
     console.log(response.values);
 
-	  const filterImages = response.values.image.map((item) => item.response[0]);
+	  const filterImages = response.values.image.map((item) => item.response);
 
 	  console.log(filterImages);
 
