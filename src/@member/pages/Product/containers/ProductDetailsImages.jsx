@@ -92,7 +92,7 @@ export const ProductDetailsImages = (props) => {
 		<Item label={label} name={name}>
 			<Upload
 				{...props}
-				action="https://clientcrm.herokuapp.com/api/files/upload"
+				action="https://servercrm.herokuapp.com/api/files/upload"
 				listType="picture-card"
 				accept="image/png, image/jpeg"
 				fileList={fileList}
