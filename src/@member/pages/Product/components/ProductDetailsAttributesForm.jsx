@@ -7,7 +7,7 @@ import Input from "components/FormElements/Input";
 const ProductDetailsAttributesForm = () => {
   return (
 	  <React.Fragment>
-		<List name="attributes" style={ { width: "100%" }}>
+		<List name="attribute" style={ { width: "100%" }}>
 			{(fields, { add, remove }) => (
 				<React.Fragment>
 					{fields.map(field => (

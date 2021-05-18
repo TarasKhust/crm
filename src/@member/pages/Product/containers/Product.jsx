@@ -16,7 +16,7 @@ const Product = () => {
 
 	const onSubmit = (response) => {
 		const {
-			attributes,
+			attribute,
 			name,
 			description,
 			metaDescription,
@@ -35,13 +35,22 @@ const Product = () => {
 			relatedProducts } = response;
 
 		const data = {
-			description, metaDescription, metaDataTagKeyword, name, tags,
+			description, metaDescription, metaDataTagKeyword, name, tags, attribute,
 			seoUrl, status, image, vendor, price, count, minimalCount, statusExist, brand, category: Number(category),
 		};
 
-		console.log(image);
-
 		data.image = image.map((item) => item.response);
+
+		data.attribute = attribute.reduce((accum, value) => {
+			accum.push({
+				name: value.text,
+				attribute_group: {
+					name: value.attributes,
+				},
+			});
+
+			return accum;
+		}, []);
 
 		setValue({ variables: { input: data } });
 	};
