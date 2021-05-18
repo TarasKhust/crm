@@ -10,7 +10,7 @@ import { onError } from "@apollo/client/link/error";
 export const history = createBrowserHistory();
 
 const httpLink = new HttpLink({
-  uri: process.env.NODE_ENV === "development" ? "http://localhost:3000/graphql" : "https://servercrm.herokuapp.com/graphql",
+  uri: process.env.NODE_ENV === "development" ? "https://servercrm.herokuapp.com/graphql" : "https://servercrm.herokuapp.com/graphql",
   credentials: "same-origin",
 });
 
