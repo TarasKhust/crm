@@ -16,8 +16,7 @@
   "scripts": {
     "clean": "rm dist/bundle.js",
     "build:prod": "webpack --config webpack.prod.js",
-    "build:dev": "NODE_ENV=development webpack serve --config webpack.dev.js --progress",
-    "start:dev": "npm run setup && npm run build:dev",
+    "start:dev": "NODE_ENV=development webpack serve --config webpack.dev.js --progress",
     "start:prod": "npm run setup && npm run build:prod",
     "start:server": "npm run setup && npm run build:server",
     "start": "node server.js",
@@ -86,6 +85,7 @@
     "postcss-loader": "5.0.0",
     "prop-types": "15.7.2",
     "react-context-devtool": "^2.0.3",
+    "react-highlight-words": "^0.17.0",
     "react-hot-loader": "4.13.0",
     "redux-mock-store": "1.5.4",
     "sass-loader": "11.0.1",

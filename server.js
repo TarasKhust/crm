@@ -23,6 +23,10 @@ app.get("/member", (req, res) => {
   res.sendFile(path.join(publicPath, "member.html"));
 });
 
+app.get("/member/catalog/products/", (req, res) => {
+  res.sendFile(path.join(publicPath, "product.html"));
+});
+
 app.listen(port, () => {
   console.log(`Hello World I run on PORT ${ port}`);
 });

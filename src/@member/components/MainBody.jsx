@@ -8,6 +8,7 @@ const Catalog = lazy(() => import(/* webpackChunkName: "Catalog" */ "@member/pag
 const Product = lazy(() => import(/* webpackChunkName: "Product" */ "@member/pages/Product/containers/Product"));
 const Category = lazy(() => import(/* webpackChunkName: "Category" */ "@member/pages/Category/index"));
 const Brands = lazy(() => import(/* webpackChunkName: "Brands" */ "@member/pages/Brands/index"));
+const Order = lazy(() => import(/* webpackChunkName: "Catalog" */ "pages/Order"));
 
 export default () => {
 	return (
@@ -31,6 +32,10 @@ export default () => {
 
 					<Route exact path={routes.members.catalog.brands._}>
 						<Brands />
+					</Route>
+
+					<Route exact path={routes.members.sales.orders._}>
+						<Order />
 					</Route>
 
 				</Switch>

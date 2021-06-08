@@ -33,6 +33,14 @@ export default Object.freeze({
 			  _: "/member/catalog/brands/",
 		    },
 		},
+		sales: {
+			_: "/member/sales/",
+
+			orders: {
+				_: "/member/sales/orders/",
+				details: "/member/sales/orders/details/:id/overview/",
+			},
+		},
 
 	},
 });

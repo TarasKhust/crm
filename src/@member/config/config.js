@@ -73,24 +73,14 @@ export default [
 	],
   },
   {
-	"path": "member/sales",
+	"path": routes.members.sales._,
 	"name": "sales",
 	"icon": <TeamOutlined />,
 	"children": [
 	  {
-		"path": "member/sales/orders",
+		"path": routes.members.sales.orders._,
 		"name": "orders",
 	    "icon": <TeamOutlined />,
-		"exact": true,
-	  },
-	  {
-		"path": "member/dashboard/monitor",
-		"name": "monitor",
-		"exact": true,
-	  },
-	  {
-		"path": "member/dashboard/workplace",
-		"name": "workplace",
 		"exact": true,
 	  },
 	],
