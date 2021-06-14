@@ -18,3 +18,11 @@ export const ORDER_QUERY = gql`
         }
     }
 `;
+
+export const DELETE_MUTATION = gql`
+    mutation delete($id: Int!) {
+        removeOrder(id: $id) {
+            __typename
+        }
+    }
+`;

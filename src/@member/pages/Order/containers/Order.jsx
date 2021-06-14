@@ -1,14 +1,18 @@
 import React, { useState, useRef } from "react";
 import "antd/dist/antd.css";
-import { Table, Input, Button, Space } from "antd";
+import { Table, Input, Button, Space, Popconfirm, message } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
-import { useQueryOrder } from "api/order-api";
+import { useQueryOrder, useRemoveOrder } from "api/order-api";
+import { ORDER_QUERY } from "api/schema/order.schema";
+import moment from "moment";
 
 export const Order = () => {
 	const textInput = useRef(null);
 
 	const { data, loading } = useQueryOrder();
+
+	const { setValue, error: errorMessage } = useRemoveOrder();
 
 	const items = !loading ? data?.orderFindAll : [];
 
@@ -18,8 +22,8 @@ export const Order = () => {
 		accum.push({
 			key: value.order_id,
 			total: value.total,
-			createdAt: value.createdAt,
-			updatedAt: value.updatedAt,
+			createdAt: moment(value.createdAt).format("D MMM YYYY h:mm"),
+			updatedAt: moment(value.updatedAt).format("D MMM YYYY h:mm"),
 			orderStatus: value.orderStatus.name,
 			name: `${customer[0].firstName} ${customer[0].lastName} ${customer[0].surName}`,
 		});
@@ -31,6 +35,21 @@ export const Order = () => {
 		searchText: "",
 		searchedColumn: "",
 	});
+
+	function confirm(id) {
+		setValue({ variables: { id: id },
+			refetchQueries: [{ query: ORDER_QUERY }] }).then(() => {
+			message.success("Click on Yes");
+		})
+.catch(() => {
+			console.log(errorMessage);
+		});
+	}
+
+	function cancel(e) {
+		console.log(e);
+		message.error("Click on No");
+	}
 
 	const handleSearch = (selectedKeys, confirm, dataIndex) => {
 		confirm();
@@ -144,7 +163,7 @@ export const Order = () => {
 				dataIndex: "createdAt",
 				key: "createdAt",
 				...getColumnSearchProps("createdAt"),
-				sorter: (a, b) => a.createdAt - b.createdAt,
+				sorter: (a, b) => new Date(b.date) - new Date(a.date),
 				sortDirections: ["descend", "ascend"],
 			},
 			{
@@ -165,7 +184,16 @@ export const Order = () => {
 							Обзор
 							{record.lastName}
 						</a>
-						<a>Удалить</a>
+						<Popconfirm
+							title="Are you sure to delete this task?"
+							onConfirm={() => confirm(record.key)}
+							onCancel={cancel}
+							okText="Yes"
+							cancelText="No"
+						>
+							<a href="#">Delete</a>
+						</Popconfirm>
+
 					</Space>
 		),
 			},
@@ -173,6 +201,7 @@ export const Order = () => {
 
 		return (
 			<Table columns={columns} dataSource={adapter} />
+
 		);
 };
 
